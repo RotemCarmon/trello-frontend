@@ -1,0 +1,36 @@
+.header-container {
+  display: grid;
+  background-color: rgba(0,0,0,.32);
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 40px;
+  align-items: center;
+  color: #fff;
+}
+
+.logo {
+  font-size: 1.6em;
+  font-weight: 700;
+  font-family: cursive;
+  justify-self: center;
+}
+
+.header-btns {
+  grid-column: 3;
+  display: flex;
+  flex-direction: row-reverse;
+  margin-inline-end: 4px;
+}
+
+.boards-btn {
+  & :first-child{
+    margin-inline-end: 4px;
+  }
+  width: min-content;
+  padding: 5px 10px;
+}
+
+.login-btn {
+  width: min-content;
+  padding: 5px 10px;
+
+}

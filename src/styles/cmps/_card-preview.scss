@@ -1,0 +1,31 @@
+.card-preview-container {
+  position: relative;
+  display: block;
+  width: 100%;
+  border-radius: 3px;
+  color: #5d5d5d;
+  box-shadow: 0 1px 0 #091e4240;
+  margin-bottom: 8px;
+  overflow-x: hidden;
+  word-break: break-all;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.card-preview {
+  width: 100%;
+  font-weight: 400;
+}
+
+.remove-card-preview {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: transparent;
+  transition: color .4s;
+}
+
+.card-preview-container:hover > .remove-card-preview{
+  color: #b5b5b575;
+}

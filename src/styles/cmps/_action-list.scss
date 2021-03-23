@@ -1,0 +1,11 @@
+.action-list-container {
+    top: 95px;
+    right: 28px;
+    button {
+        padding: 6px 0;
+        padding-inline-start: 16px;
+        &:hover {
+            background-color: $hover-btn;
+        }
+    }
+}

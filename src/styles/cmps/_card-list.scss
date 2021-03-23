@@ -1,0 +1,40 @@
+.card-list-container {
+    position: relative;
+    color: #5d5d5d;
+    max-height: calc(100vh - 120px);
+    margin: 0 4px;
+    // overflow-x: hidden;
+    // overflow-y: auto;
+}
+.card-list {
+    margin: 0 4px;
+    padding: 0 4px;
+    height: 100%;
+
+    .add-card-title-input textarea {
+        font-family: inherit;
+        font-size: inherit;
+        width: 100%;
+        border-radius: 3px;
+        padding: 4px;
+        color: #5d5d5d;
+        box-shadow: 0 1px 0 #091e4240;
+        border: none;
+        outline: none;
+        resize: none;
+    }
+}
+
+.list-header {
+    padding: 8px 10px 4px;
+    margin-bottom: 4px;
+    .list-title {
+        width: 100%;
+        padding: 5px;
+    }
+    .list-menu {
+        padding: 4px 8px;
+        font-size: 1.3rem;
+        box-sizing: content-box;
+    }
+}
