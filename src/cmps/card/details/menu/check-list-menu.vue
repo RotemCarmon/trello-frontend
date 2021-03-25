@@ -5,19 +5,20 @@
     </template>
     <template v-slot:main>
       <h5>Title</h5>
-      <input type="text" v-model="checklistTitle" />
-      <button @click="save" class="save-btn flex center-center">Add</button>
+      <input type="text" v-model="title" ref="input" />
+      <save-btn @save="save" :withClose="false" txt="Add" />
     </template>
   </popup-menu>
 </template>
 
 <script>
+import saveBtn from '../../../common/save-btn';
 import popupMenu from '../../../common/popup-menu';
 export default {
   name: 'check-list-menu',
   data() {
     return {
-      checklistTitle: '',
+      title: '',
     };
   },
   methods: {
@@ -25,11 +26,19 @@ export default {
       this.$emit('close');
     },
     save() {
-      this.$emit('addChecklist', this.checklistTitle);
+      // Show warning user msg
+      if (!this.title) return console.log('Must have a title');
+      this.$emit('add', this.title);
+      this.title = '';
+      this.close();
     },
+  },
+  mounted() {
+    this.$refs.input.focus();
   },
   components: {
     popupMenu,
+    saveBtn,
   },
 };
 </script>

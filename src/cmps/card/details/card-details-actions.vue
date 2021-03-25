@@ -3,7 +3,7 @@
     <h3 class="details-section-header">Actions</h3>
     <!-- Label -->
     <details-button
-      @click.native="openMenu('label')"
+      @click.native.self="openMenu('label')"
       txt="labels"
       icon="tag"
       prefix="fal"
@@ -18,17 +18,20 @@
     </details-button>
     <!-- Check List -->
     <details-button
-      @click.native="openMenu('checklist')"
+      @click.native.self="openMenu('checklist')"
       txt="check list"
       icon="tasks"
       prefix="fal"
       ><template v-slot:menu
-        ><check-list-menu @close="onCloseMenu" v-if="currMenu === 'checklist'"
+        ><check-list-menu
+          @close="onCloseMenu"
+          @add="addCheckList"
+          v-if="currMenu === 'checklist'"
       /></template>
     </details-button>
     <!-- Due Date -->
     <details-button
-      @click.native="openMenu('dueDate')"
+      @click.native.self="openMenu('dueDate')"
       txt="due date"
       icon="clock"
       prefix="fal"
@@ -38,7 +41,7 @@
     </details-button>
     <!-- Members -->
     <details-button
-      @click.native="openMenu('members')"
+      @click.native.self="openMenu('members')"
       txt="members"
       icon="user"
       prefix="fal"
@@ -80,7 +83,10 @@ export default {
     },
     onCloseMenu() {
       this.currMenu = '';
-    }
+    },
+    addCheckList(title) {
+      console.log('Adding ', title);
+    },
   },
   components: {
     detailsButton,

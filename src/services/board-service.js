@@ -37,6 +37,32 @@ var gBoards = [
             _id: 'c101',
             createdAt: Date.now(),
             labels: [2, 3],
+            checkLists: [
+              {
+                id: makeId(),
+                title: 'My list',
+                todos: [
+                  {
+                    id: makeId(),
+                    txt: 'Finish todo list',
+                    isDone: false,
+                    cretaedAt: Date.now()
+                  },
+                  {
+                    id: makeId(),
+                    txt: 'Clean scss from components',
+                    isDone: false,
+                    cretaedAt: Date.now()
+                  },
+                  {
+                    id: makeId(),
+                    txt: 'Add icons to card',
+                    isDone: false,
+                    cretaedAt: Date.now()
+                  }
+                ],
+              }
+            ],
             inList: {
               listId: 'l101',
               listTitle: 'Todo list'
@@ -49,6 +75,7 @@ var gBoards = [
             _id: 'c102',
             createdAt: Date.now(),
             labels: [],
+            checkLists: [],
             inList: {
               listId: 'l101',
               listTitle: 'Todo list'
@@ -71,6 +98,7 @@ var gBoards = [
             _id: 'c103',
             createdAt: Date.now(),
             labels: [],
+            checkLists: [],
             inList: {
               listId: 'l102',
               listTitle: 'In progress'
@@ -84,6 +112,7 @@ var gBoards = [
             _id: 'c104',
             createdAt: Date.now(),
             labels: [],
+            checkLists: [],
             inList: {
               listId: 'l102',
               listTitle: 'In progress'

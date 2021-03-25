@@ -1,6 +1,6 @@
 <template>
   <div
-    class="label-list flex align-end"
+    class="label-list flex align-end wrap"
     :class="{ 'label-open': isOpenLabel }"
     @click.stop="isOpenLabel = !isOpenLabel"
   >

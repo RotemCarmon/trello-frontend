@@ -4,15 +4,20 @@
       <h3>Due Date</h3>
     </template>
     <template v-slot:main>
-      <date-picker v-model="date" :inline="true" />
-      <button @click="selectDate" class="save-btn flex center-center">
+      <date-picker
+        v-model="date"
+        :inline="true"
+      />
+      <!-- <button @click.stop="selectDate" class="save-btn flex center-center">
         Save
-      </button>
+      </button> -->
+      <save-btn :withClose="false" />
     </template>
   </popup-menu>
 </template>
 
 <script>
+import saveBtn from '../../../common/save-btn';
 import popupMenu from '../../../common/popup-menu';
 import datePicker from 'vuejs-datepicker';
 export default {
@@ -34,6 +39,13 @@ export default {
   components: {
     datePicker,
     popupMenu,
+    saveBtn,
   },
 };
 </script>
+
+<style lang="scss">
+.vdp-datepicker__calendar {
+  border: none;
+}
+</style>

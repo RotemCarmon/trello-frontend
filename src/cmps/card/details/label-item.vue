@@ -4,7 +4,7 @@
     class="label-item"
     :style="{ backgroundColor: label.color }"
   >
-    {{isOpen?label.title:'' }}
+    {{ isOpen ? label.txt : '' }}
   </div>
 </template>
 
@@ -27,7 +27,7 @@ export default {
 .label-item {
   user-select: none;
   width: 40px;
-  margin-inline-end: 5px;
+  margin: 5px 5px 5px 0;
   border-radius: 5px;
   height: 8px;
   display: flex;
@@ -47,9 +47,11 @@ export default {
   height: 24px;
   width: 80px;
 }
+.card-preview-container .label-item {
+  font-size: 0;
+}
 .card-preview-container .label-open .label-item {
   width: 60px;
   height: 16px;
-  font-size: 13px;
 }
 </style>

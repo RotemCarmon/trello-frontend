@@ -21,7 +21,7 @@
               v-if="activeLabels && activeLabels.length"
               class="details-section details-section-lebels"
             >
-              <h3 class="details-section-header">Lebels</h3>
+              <h3 class="details-section-header">Labels</h3>
               <label-list :labels="activeLabels" />
             </section>
             <!-- DESCRIPTION -->
@@ -29,6 +29,8 @@
               @save="updateDesc"
               :description="card.description"
             />
+            <!-- CHECK LIST -->
+            <check-main @update="updateCard" :checkLists="card.checkLists" />
             <!-- ACTIVITIES -->
             <section class="details-section details-section-activity">
               <h3 class="details-section-header">Activity</h3>
@@ -52,6 +54,7 @@ import activityList from '../cmps/card/details/activity-list';
 import cardDescription from '../cmps/card/details/card-description';
 import labelList from '../cmps/card/details/label-list';
 import cardDetailsActions from '../cmps/card/details/card-details-actions';
+import checkMain from '../cmps/card/details/check-list/check-main';
 
 export default {
   name: 'card-details',
@@ -87,6 +90,7 @@ export default {
       this.updateCard();
     },
     updateCard() {
+      // console.log(this.card);
       this.$store.dispatch('updateCard', this.card);
     },
     setActiveLabel(idx) {
@@ -102,6 +106,7 @@ export default {
     labelList,
     cardDescription,
     cardDetailsActions,
+    checkMain,
   },
 };
 </script>
