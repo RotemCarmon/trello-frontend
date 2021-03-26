@@ -1,5 +1,6 @@
 <template>
-  <section class="add-list-container" :class="{ 'list-basic': isAddingList }">
+  <!-- <section class="add-list-container" :class="{ 'list-basic': isAddingList }"> -->
+  <section class="add-list-container list-basic" :class="{ 'is-idle': !isAddingList }">
       <div class="add-text">
         <input
           type="text"
@@ -13,7 +14,7 @@
         <button
           v-if="!isAddingList"
           @click="isAddingList = true"
-          class="on-add-card-btn list-btn"
+          class="open-add-list-btn list-btn"
         >
           + Add another list
         </button>
@@ -51,4 +52,7 @@ export default {
 </script>
 
 <style>
+.is-idle {
+  background-color: #ffffff3d !important;
+}
 </style>

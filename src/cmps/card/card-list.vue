@@ -8,34 +8,35 @@
         @click="isOpenAction = !isOpenAction"
       />
     </div>
-    <div class="card-list">
+    <!-- List -->
+    <div class="card-list" :class="{'add-open': isAddingCard}">
       <card-preview
         v-for="card in list.cards"
         :card="card"
         :key="card._id"
         @removeCard="removeCard"
       />
-      <div class="add-card-title-input">
-        <textarea
-          v-if="isAddingCard"
-          v-model="newCardTitle"
-          rows="3"
-          placeholder="Enter the title for this card"
-        ></textarea>
+      <div class="add-card-container">
+        <div v-if="isAddingCard" ref="add" class="add-card-title-input">
+          <textarea
+            ref="input"
+            v-model="newCardTitle"
+            rows="3"
+            placeholder="Enter the title for this card"
+          ></textarea>
+          <save-btn @save="addCard" @close="closeAddCard" />
+        </div>
       </div>
     </div>
-    <div class="add-card-container">
-      <button
-        v-if="!isAddingCard"
-        @click="isAddingCard = true"
-        class="on-add-card-btn list-btn"
-      >
-        + Add another card
-      </button>
-      <div v-if="isAddingCard" class="save-card flex space-between">
-        <save-btn @save="addCard" @close="closeAddCard" />
-      </div>
-    </div>
+    <!-- Add Card -->
+    <button
+      v-if="!isAddingCard"
+      @click="isAddingCard = true"
+      class="open-add-card-btn list-btn"
+    >
+      + Add another card
+    </button>
+    <!-- Menu -->
     <transition name="fade">
       <action-list
         v-if="isOpenAction"
@@ -81,7 +82,6 @@ export default {
     },
 
     removeList() {
-      console.log('Removing list');
       this.$store.dispatch('removeList', this.list._id);
     },
     openAddCard() {
@@ -97,6 +97,18 @@ export default {
     },
     closeActionList() {
       this.isOpenAction = false;
+    },
+  },
+  // TODO: move in to the add-item component
+  watch: {
+    isAddingCard(val) {
+      console.log('ADDING');
+      this.$nextTick(() => {
+        // this.$refs.password.focus()
+
+        if (val) this.$refs.input.focus();
+        this.$refs.add.scrollIntoView({ block: 'end' });
+      });
     },
   },
   components: {

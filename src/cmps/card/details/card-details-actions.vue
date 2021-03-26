@@ -9,10 +9,10 @@
       prefix="fal"
       ><template v-slot:menu>
         <label-menu
-          v-on="$listeners"
+          v-if="currMenu === 'label'"
+          @setActive="setActiveLabel"
           @close="onCloseMenu"
           :labels="labels"
-          v-if="currMenu === 'label'"
         />
       </template>
     </details-button>
@@ -24,9 +24,9 @@
       prefix="fal"
       ><template v-slot:menu
         ><check-list-menu
+          v-if="currMenu === 'checklist'"
           @close="onCloseMenu"
           @add="addCheckList"
-          v-if="currMenu === 'checklist'"
       /></template>
     </details-button>
     <!-- Due Date -->
@@ -36,7 +36,7 @@
       icon="clock"
       prefix="fal"
       ><template v-slot:menu
-        ><due-date-menu @close="onCloseMenu" v-if="currMenu === 'dueDate'"
+        ><due-date-menu v-if="currMenu === 'dueDate'" @close="onCloseMenu"
       /></template>
     </details-button>
     <!-- Members -->
@@ -47,8 +47,8 @@
       prefix="fal"
       ><template v-slot:menu>
         <members-menu
-          @close="onCloseMenu"
           v-if="currMenu === 'members'"
+          @close="onCloseMenu"
           :members="boardMembers"
       /></template>
     </details-button>
@@ -75,6 +75,9 @@ export default {
     boardMembers() {
       return this.$store.getters.getMembers;
     },
+    card() {
+      return this.$store.getters.getCurrCard;
+    },
   },
   methods: {
     openMenu(menuName) {
@@ -84,8 +87,21 @@ export default {
     onCloseMenu() {
       this.currMenu = '';
     },
+    setActiveLabel(idx) {
+      const card = this.card;
+      if (card.labels.includes(idx)) {
+        const _idx = card.labels.findIndex((l) => l === idx);
+        if (_idx !== -1) card.labels.splice(_idx, 1);
+      } else card.labels.push(idx);
+      this.$emit('update', card);
+    },
     addCheckList(title) {
       console.log('Adding ', title);
+      this.card.checkLists.push({
+        title,
+        todos: [],
+      });
+      this.$emit('update', this.card);
     },
   },
   components: {

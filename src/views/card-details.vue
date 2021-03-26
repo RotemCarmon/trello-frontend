@@ -32,6 +32,7 @@
             <!-- CHECK LIST -->
             <check-main @update="updateCard" :checkLists="card.checkLists" />
             <!-- ACTIVITIES -->
+            <!-- TODO: split to component -->
             <section class="details-section details-section-activity">
               <h3 class="details-section-header">Activity</h3>
               <div class="activity-add">
@@ -41,7 +42,7 @@
             </section>
           </section>
           <!-- ACTIONS -->
-          <card-details-actions @setActive="setActiveLabel" :labels="labels" />
+          <card-details-actions @update="updateCard" :labels="labels" />
           <!-- <<== Labels -->
         </main>
       </div>
@@ -89,17 +90,9 @@ export default {
       this.card.description = desc;
       this.updateCard();
     },
-    updateCard() {
-      // console.log(this.card);
-      this.$store.dispatch('updateCard', this.card);
-    },
-    setActiveLabel(idx) {
-      if (this.card.labels.includes(idx)) {
-        const _idx = this.card.labels.findIndex((l) => l === idx);
-        if (_idx !== -1) this.card.labels.splice(_idx, 1);
-      } else this.card.labels.push(idx);
-      this.updateCard();
-    },
+    updateCard(card = this.card) {
+      this.$store.dispatch('updateCard', card);
+    }
   },
   components: {
     activityList,

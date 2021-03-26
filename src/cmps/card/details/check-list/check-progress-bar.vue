@@ -17,6 +17,7 @@ export default {
   },
   computed: {
     donePresent() {
+      if (this.todos.length === 0) return 0;
       const count = this.todos.reduce((count, todo) => {
         if (todo.isDone) count++;
         return count;
