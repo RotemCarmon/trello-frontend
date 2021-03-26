@@ -2,26 +2,43 @@
     position: relative;
     color: #5d5d5d;
     max-height: calc(100vh - 120px);
-    margin: 0 4px;
-    // overflow-x: hidden;
-    // overflow-y: auto;
 }
 .card-list {
+    overflow-y: auto;
     margin: 0 4px;
     padding: 0 4px;
     height: 100%;
+    &::-webkit-scrollbar{
+        width: 8px;
+        height: 8px;
+    }
+    &::-webkit-scrollbar-track-piece{
+        background: rgba(9,30,66,.08);
+        border-radius: 4px;
+    }
+    &::-webkit-scrollbar-thumb {
+        background: rgb(190,194,205);
+        border-radius: 4px;
+    }
+    &.add-open::-webkit-scrollbar-track-piece{
+ 
+        margin-bottom: 8px;
+    }
 
-    .add-card-title-input textarea {
-        font-family: inherit;
-        font-size: inherit;
-        width: 100%;
-        border-radius: 3px;
-        padding: 4px;
-        color: #5d5d5d;
-        box-shadow: 0 1px 0 #091e4240;
-        border: none;
-        outline: none;
-        resize: none;
+    .add-card-title-input {
+        padding-bottom: 8px;
+        textarea {
+            font-family: inherit;
+            font-size: inherit;
+            width: 100%;
+            border-radius: 3px;
+            padding: 8px;
+            color: #5d5d5d;
+            box-shadow: 0 1px 0 #091e4240;
+            border: none;
+            outline: none;
+            resize: none;
+        }
     }
 }
 
