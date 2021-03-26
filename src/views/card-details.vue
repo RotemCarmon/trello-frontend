@@ -1,6 +1,6 @@
 <template>
   <section v-if="card" class="card-modal">
-    <div class="modal-screen">
+    <div class="modal-screen flex justify-center">
       <div class="card-details-container">
         <button
           @click="closeCard"
@@ -14,12 +14,12 @@
             >In list <span>{{ card.inList.listTitle }}</span></small
           >
         </div>
-        <main class="main-card-details flex">
+        <main class="main-card-details custom-scroll  flex">
           <section class="card-content-container grow-1">
             <!-- LABELS -->
             <section
               v-if="activeLabels && activeLabels.length"
-              class="details-section details-section-lebels"
+              class="details-section-labels"
             >
               <h3 class="details-section-header">Labels</h3>
               <label-list :labels="activeLabels" />

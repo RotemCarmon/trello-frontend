@@ -9,7 +9,7 @@
       />
     </div>
     <!-- List -->
-    <div class="card-list" :class="{'add-open': isAddingCard}">
+    <div class="card-list custom-scroll" :class="{'add-open': isAddingCard}">
       <card-preview
         v-for="card in list.cards"
         :card="card"

@@ -1,0 +1,20 @@
+.custom-scroll {
+  overflow-y: auto;
+  // height: 100%;
+  &::-webkit-scrollbar{
+      width: 8px;
+      height: 8px;
+  }
+  &::-webkit-scrollbar-track-piece{
+      background: rgba(9,30,66,.08);
+      border-radius: 4px;
+  }
+  &::-webkit-scrollbar-thumb {
+      background: rgb(190,194,205);
+      border-radius: 4px;
+  }
+  &.add-open::-webkit-scrollbar-track-piece{
+
+      margin-bottom: 8px;
+  }
+}
