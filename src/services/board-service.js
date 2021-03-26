@@ -61,6 +61,24 @@ var gBoards = [
                     cretaedAt: Date.now()
                   }
                 ],
+              },
+              {
+                id: makeId(),
+                title: 'Another list',
+                todos: [
+                  {
+                    id: makeId(),
+                    txt: 'todo1',
+                    isDone: false,
+                    cretaedAt: Date.now()
+                  },
+                  {
+                    id: makeId(),
+                    txt: 'todo2',
+                    isDone: false,
+                    cretaedAt: Date.now()
+                  }
+                ],
               }
             ],
             inList: {
