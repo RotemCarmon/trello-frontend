@@ -5,6 +5,7 @@
 
 html {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 20px;
     color: #606060;
 }
 
@@ -84,8 +85,6 @@ input[type='text'] {
         top: 12px;
         right: 12px;
         cursor: pointer;
-        &:hover {
-        }
     }
     h3 {
         border-bottom: 1px solid #091e4221;

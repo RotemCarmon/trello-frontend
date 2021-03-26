@@ -1,5 +1,5 @@
 <template>
-  <section class="check-progress-bar-container">
+  <section class="check-progress-bar-container flex align-center">
     <span> {{ donePresent.toFixed() }}% </span>
     <div class="progress-bar">
       <div :style="{ width: donePresent + '%' }" class="currnet-progress"></div>
@@ -28,8 +28,13 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.progress-bar {
-  width: 100%;
+.check-progress-bar-container {
+
+  span {
+    font-size: 11px;
+  }
+  .progress-bar {
+    width: 100%;
   height: 8px;
   border-radius: 4px;
   background-color: #091e4214;
@@ -47,5 +52,6 @@ export default {
   transition-property: width, background-color;
   transition-duration: 0.14s;
   transition-timing-function: ease-in;
+  }
 }
 </style>
