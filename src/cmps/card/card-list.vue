@@ -9,7 +9,7 @@
       />
     </div>
     <!-- List -->
-    <div class="card-list custom-scroll" :class="{'add-open': isAddingCard}">
+    <div class="card-list custom-scroll" :class="{ 'add-open': isAddingCard }">
       <card-preview
         v-for="card in list.cards"
         :card="card"
@@ -102,12 +102,11 @@ export default {
   // TODO: move in to the add-item component
   watch: {
     isAddingCard(val) {
-      console.log('ADDING');
       this.$nextTick(() => {
-        // this.$refs.password.focus()
-
-        if (val) this.$refs.input.focus();
-        this.$refs.add.scrollIntoView({ block: 'end' });
+        if (val) {
+          this.$refs.input.focus();
+          this.$refs.add.scrollIntoView({ block: 'end' });
+        }
       });
     },
   },
