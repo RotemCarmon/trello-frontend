@@ -38,7 +38,8 @@ function updateCard({ board, card }) {
 export const cardService = {
   removeCard,
   addCard,
-  updateCard
+  updateCard,
+  getEmptyTodo
 }
 
 function _getEmptyCard() {
@@ -47,5 +48,14 @@ function _getEmptyCard() {
     createdAt: Date.now(),
     description: '',
     labels: []
+  }
+}
+
+function getEmptyTodo() {
+  return {
+    cretaedAt: Date.now(),
+    id: makeId(),
+    isDone: false,
+    txt: ''
   }
 }

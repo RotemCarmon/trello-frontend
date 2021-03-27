@@ -3,6 +3,7 @@
     <textarea
       :value="content"
       @input="changeInput"
+      :placeholder="placeholder"
     />
   </label>
 </template>
@@ -12,7 +13,7 @@ export default {
   props: {
     placeholder: {
       type: String,
-      default: () => 'Enter text here',
+      default: 'Enter text here',
     },
     value: String,
   },
@@ -23,7 +24,6 @@ export default {
   },
   methods: {
     changeInput(ev) {
-      console.log('ev:', ev)
       ev.target.parentNode.dataset.value = ev.target.value
       this.content = ev.target.value;
       this.$emit('input', this.content);

@@ -2,6 +2,7 @@
   <div class="save-btn-container flex">
     <button @click="save" class="save-btn flex center-center">{{txt}}</button>
     <button v-if="withClose" @click="close" class="close flex center-center sqare-btn">
+      <!-- Change close to font-awesome -->
       <i class="close-btn"></i>
     </button>
   </div>

@@ -40,26 +40,23 @@ button {
     cursor: pointer;
 }
 
-input[type='text'] {
+textarea, input[type='text'] {
+    font-family: inherit;
+    font-size: inherit;
     width: 100%;
-    padding: 0.5em;
+    padding: 4px 8px;
+    resize: none;
 }
 
 .add-text {
-    input,
-    textarea {
-        font-family: inherit;
-        font-size: inherit;
+    input {
+        border: none;
         width: 256px;
         border-radius: 3px;
-        padding: 4px;
         margin: 8px;
         margin-bottom: 0;
         color: #5d5d5d;
         box-shadow: 0 1px 0 #091e4240;
-        border: none;
-        outline: none;
-        resize: none;
     }
 }
 
