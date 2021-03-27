@@ -1,5 +1,5 @@
 <template>
-  <section class="details-section details-section-description">
+  <section class="details-section details-section-description left-gap">
     <h3 class="details-section-header">Description</h3>
     <div v-if="!editableDescription || isEditDesc" class="save-description">
       <resizeable-input v-model="editableDescription" />

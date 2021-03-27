@@ -1,6 +1,6 @@
 <template>
   <section class="todo-list-container">
-    <header class="flex space-between">
+    <header class="flex space-between left-gap">
     <h3 class="details-section-header">{{ list.title }}</h3>
     <common-card-btn title="Delete"/>
     </header>

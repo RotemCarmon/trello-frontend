@@ -8,7 +8,7 @@
         >
           <font-awesome-icon :icon="['fal', 'times']" />
         </button>
-        <div class="card-title">
+        <div class="card-title left-gap">
           <h3>{{ card.title }}</h3>
           <small
             >In list <span>{{ card.inList.listTitle }}</span></small
@@ -19,7 +19,7 @@
             <!-- LABELS -->
             <section
               v-if="activeLabels && activeLabels.length"
-              class="details-section-labels"
+              class="details-section-labels left-gap"
             >
               <h3 class="details-section-header">Labels</h3>
               <label-list :labels="activeLabels" />
