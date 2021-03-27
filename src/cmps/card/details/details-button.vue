@@ -26,7 +26,6 @@ export default {
 <style lang="scss" scoped>
 .details-button-container {
   position: relative;
-  width: 120px;
   padding-inline-start: 6px;
   margin-bottom: 8px;
   .button-icon {

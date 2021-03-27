@@ -34,8 +34,8 @@
             <!-- ACTIVITIES -->
             <!-- TODO: split to component -->
             <section class="details-section details-section-activity">
-              <h3 class="details-section-header">Activity</h3>
-              <div class="activity-add">
+              <h3 class="details-section-header left-gap">Activity</h3>
+              <div class="activity-add left-gap">
                 <input type="text" placeholder="write a comment" />
               </div>
               <activity-list :activities="card.activities" />

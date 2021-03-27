@@ -1,6 +1,5 @@
 .custom-scroll {
   overflow-y: auto;
-  // height: 100%;
   &::-webkit-scrollbar{
       width: 8px;
       height: 8px;
@@ -14,7 +13,6 @@
       border-radius: 4px;
   }
   &.add-open::-webkit-scrollbar-track-piece{
-
       margin-bottom: 8px;
   }
 }

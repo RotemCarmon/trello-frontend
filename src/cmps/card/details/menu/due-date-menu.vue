@@ -8,9 +8,6 @@
         v-model="date"
         :inline="true"
       />
-      <!-- <button @click.stop="selectDate" class="save-btn flex center-center">
-        Save
-      </button> -->
       <save-btn :withClose="false" />
     </template>
   </popup-menu>

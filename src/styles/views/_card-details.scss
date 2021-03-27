@@ -1,6 +1,6 @@
 .card-modal {
     .modal-screen {
-        overflow-y: auto;
+        overflow-x: hidden;
         position: fixed;
         top: 0;
         left: 0;
@@ -12,7 +12,7 @@
         position: relative;
         min-height: 600px;
         height: min-content;
-        width: 680px;
+        width: 768px;
         box-shadow: 0 0 2px rgb(0, 0, 0);
         background-color: #f3f4f6;
         border-radius: 3px;
@@ -55,8 +55,8 @@
                 }
             }
             .card-controllers-container {
-                padding-inline-start: 30px;
-                width: 180px;
+                padding-inline-start: 16px;
+                width: 168px;
 
                 .popup-menu {
                     padding: 12px;
