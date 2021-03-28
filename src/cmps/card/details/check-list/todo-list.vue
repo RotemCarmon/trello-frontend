@@ -1,6 +1,6 @@
 <template>
   <section class="todo-list-container">
-    <header class="flex space-between left-gap">
+    <header class="flex space-between align-center left-gap">
       <h3 class="details-section-header">{{ list.title }}</h3>
       <common-card-btn
         @click.native="$emit('remove', list.id)"
@@ -14,7 +14,7 @@
       :key="todo.id"
       @updateTodo="updateTodos"
     />
-    <section class="left-gap">
+    <section class="add-todo-container left-gap">
       <add-item
         v-if="isAdding"
         @close="toggleAddTodo"
@@ -80,8 +80,17 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 .todo-list-container {
   margin: 0 0 24px;
+
+  header {
+    padding: 8px 0;
+    margin-bottom: 4px;
+  }
+
+}
+.add-todo-container {
+  margin-top: 4px;
 }
 </style>

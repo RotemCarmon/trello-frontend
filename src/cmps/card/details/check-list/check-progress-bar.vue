@@ -1,7 +1,7 @@
 <template>
   <section class="check-progress-bar-container flex align-center">
     <span> {{ donePresent.toFixed() }}% </span>
-    <div class="progress-bar">
+    <div class="progress-bar left-gap">
       <div :style="{ width: donePresent + '%' }" class="currnet-progress"></div>
     </div>
   </section>
@@ -32,6 +32,7 @@ export default {
 
   span {
     font-size: 11px;
+    position: absolute;
   }
   .progress-bar {
     width: 100%;
