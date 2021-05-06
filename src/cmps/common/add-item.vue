@@ -18,6 +18,7 @@ export default {
   props: {
     placeholder: String,
     title: String,
+    content: String,
   },
   data() {
     return {
@@ -29,6 +30,9 @@ export default {
       this.$emit('save', this.txt);
       this.txt = '';
     },
+  },
+  created() {
+    if (this.content) this.txt = this.content;
   },
   mounted() {
     this.$refs.input.focus();
@@ -50,7 +54,7 @@ export default {
 
   .dummy-el {
     position: absolute;
-    bottom: -8px
+    bottom: -8px;
   }
 }
 </style>

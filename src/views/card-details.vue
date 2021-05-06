@@ -2,19 +2,24 @@
   <section v-if="card" class="card-modal">
     <div class="modal-screen flex justify-center">
       <div class="card-details-container">
+        <!-- CLOSE BUTTON -->
         <button
           @click="closeCard"
-          class="close-card flex center-center sqare-btn"
+          class="close-card hover-bg-btn flex center-center sqare-btn"
         >
           <font-awesome-icon :icon="['fal', 'times']" />
         </button>
+        <!-- CARD TITLE -->
         <div class="card-title left-gap">
-          <h3>{{ card.title }}</h3>
+          <h3 contenteditable @input="editTitle">{{ card.title }}</h3>
           <small
             >In list <span>{{ card.inList.listTitle }}</span></small
           >
         </div>
-        <main class="main-card-details custom-scroll  flex">
+        <!-- ############ -->
+        <!-- MAIN CONTENT -->
+        <!-- ############ -->
+        <main class="main-card-details custom-scroll flex">
           <section class="card-content-container grow-1">
             <!-- LABELS -->
             <section
@@ -78,6 +83,9 @@ export default {
     },
   },
   methods: {
+    close() {
+      console.log('Space has been pressed!');
+    },
     loadCard() {
       const { listCardId } = this.$route.params;
       const [listId, cardId] = listCardId.split('-');
@@ -92,7 +100,13 @@ export default {
     },
     updateCard(card = this.card) {
       this.$store.dispatch('updateCard', card);
-    }
+    },
+    editTitle(ev) {
+      console.log('Title Edit', ev.target.innerText);
+      const txt = ev.target.innerText;
+      this.card.title = txt;
+      this.updateCard();
+    },
   },
   components: {
     activityList,

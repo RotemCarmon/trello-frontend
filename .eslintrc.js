@@ -18,7 +18,8 @@ module.exports = {
     semi: 'off',
     'no-trailing-spaces': 'off',
     'space-before-function-paren': 'off',
-    'comma-dangle': 'off'
+    'comma-dangle': 'off',
+    'vue/no-unused-components': 'off'
   },
   overrides: [
     {

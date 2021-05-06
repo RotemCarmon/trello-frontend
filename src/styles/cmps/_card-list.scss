@@ -4,6 +4,7 @@
     max-height: calc(100vh - 120px);
 }
 .card-list {
+    overflow-y: auto;
     margin: 0 4px;
     padding: 0 4px;
     height: 100%;

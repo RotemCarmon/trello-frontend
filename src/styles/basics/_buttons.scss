@@ -1,4 +1,3 @@
-
 .btn-header {
     padding: 5px;
     display: flex;
@@ -15,7 +14,13 @@
 .btn-header:first-child {
     margin-inline-start: 8px;
 }
-
+.hover-bg-btn {
+    transition: background-color 0.4s;
+    border-radius: 3px;
+    &:hover {
+        background-color: $elem-bgc;
+    }
+}
 .sqare-btn {
     min-width: 32px;
     max-width: 32px;
@@ -70,5 +75,5 @@
     &:hover {
         background-color: rgba(9, 30, 66, 0.122);
         cursor: pointer;
-  }
+    }
 }
