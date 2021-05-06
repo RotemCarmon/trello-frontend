@@ -13,6 +13,7 @@
       :todo="todo"
       :key="todo.id"
       @updateTodo="updateTodos"
+      @remove="removeTodo"
     />
     <section class="add-todo-container left-gap">
       <add-item
@@ -52,6 +53,13 @@ export default {
     };
   },
   methods: {
+    removeTodo(todoId) {
+      const todos = this.list.todos;
+      const idx = todos.findIndex((t) => t.id === todoId);
+      if (idx === -1) return console.log("Can't remove todo");
+      todos.splice(idx, 1);
+      this.$emit('update', this.list);
+    },
     updateTodos(todo) {
       const todos = this.list.todos;
       const idx = todos.findIndex((t) => t.id === todo.id);
@@ -88,7 +96,6 @@ export default {
     padding: 8px 0;
     margin-bottom: 4px;
   }
-
 }
 .add-todo-container {
   margin-top: 4px;

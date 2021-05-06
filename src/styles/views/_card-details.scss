@@ -26,16 +26,17 @@
             position: absolute;
             right: 5px;
             top: 5px;
-            transition: background-color 0.4s;
-            border-radius: 3px;
-            &:hover {
-                background-color: $elem-bgc;
-            }
         }
         .card-title {
+            width: 88%;
             h3 {
+                padding-inline-start: 4px;
+                line-height: 1.5;
+                min-height: 32px;
                 font-weight: 600;
                 font-size: 1.2em;
+                &[contenteditable]:focus {
+                }
             }
             margin-bottom: 20px;
         }

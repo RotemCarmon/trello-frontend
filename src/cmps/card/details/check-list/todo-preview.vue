@@ -1,15 +1,39 @@
 <template>
-  <section class="todo-preview-container flex sapce-between align-center">
+  <section
+    class="todo-preview-container flex space-between align-center"
+    :class="{ edit: isEdit }"
+  >
     <!-- <input type="checkbox" :checked="isActive" @change="toggleTodoActive" /> -->
-    <input type="checkbox" v-model="todo.isDone" @change="updateTodo" class="check-box" />
+    <input
+      type="checkbox"
+      v-model="todo.isDone"
+      @change="updateTodo"
+      class="check-box"
+    />
     <div class="todo-preview">
-      <span :class="{ done: todo.isDone }">{{ todo.txt }}</span>
+      <add-item
+        v-if="isEdit"
+        @save="editTodo"
+        @close="toggleEdit"
+        :content="todo.txt"
+      />
+      <span v-else @click="toggleEdit" :class="{ done: todo.isDone }">{{
+        todo.txt
+      }}</span>
     </div>
     <!-- update todo txt -->
+    <button
+      v-if="!isEdit"
+      @click="removeTodo"
+      class="remove-todo flex center-center"
+    >
+      <font-awesome-icon :icon="['fal', 'times']" />
+    </button>
   </section>
 </template>
 
 <script>
+import addItem from '../../../common/add-item';
 export default {
   name: 'todo-preview',
   props: {
@@ -17,10 +41,29 @@ export default {
       type: Object,
     },
   },
+  data() {
+    return {
+      isEdit: false,
+    };
+  },
   methods: {
     updateTodo() {
       this.$emit('updateTodo', this.todo);
     },
+    removeTodo() {
+      this.$emit('remove', this.todo.id);
+    },
+    editTodo(txt) {
+      this.todo.txt = txt;
+      this.updateTodo();
+      this.toggleEdit();
+    },
+    toggleEdit() {
+      this.isEdit = !this.isEdit;
+    },
+  },
+  components: {
+    addItem,
   },
 };
 </script>
@@ -36,8 +79,25 @@ export default {
     z-index: 10;
     cursor: pointer;
   }
+  .remove-todo {
+    display: none;
+    margin-inline-end: 5px;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    padding: 2px;
+    &:hover {
+      background-color: rgba(56, 56, 56, 0.1);
+    }
+  }
   &:hover {
     background-color: rgba(65, 65, 65, 0.109);
+    .remove-todo {
+      display: flex;
+    }
+  }
+  &.edit {
+    display: block;
   }
 }
 .done {

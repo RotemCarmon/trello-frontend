@@ -1,10 +1,10 @@
 <template>
-  <button class="details-button-container details-btn">
+  <div class="details-button-container details-btn">
     <slot name="menu"></slot>
     <font-awesome-icon v-if="icon" class="button-icon" :icon="[prefix, icon]" />
     <span v-else-if="!icon" class="button-icon"></span>
     {{ txt }}
-  </button>
+  </div>
 </template>
 
 <script>

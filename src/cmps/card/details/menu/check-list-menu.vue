@@ -5,7 +5,7 @@
     </template>
     <template v-slot:main>
       <h5>Title</h5>
-      <input type="text" v-model="title" ref="input" />
+      <input type="text" v-model="title" @keyup.enter="save" ref="input" />
       <save-btn @save="save" :withClose="false" txt="Add" />
     </template>
   </popup-menu>
@@ -26,8 +26,7 @@ export default {
       this.$emit('close');
     },
     save() {
-      // Show warning user msg
-      if (!this.title) return console.log('Must have a title');
+      if (!this.title) return console.log('Must have a title'); // TODO: Show warning user msg 
       this.$emit('add', this.title);
       this.title = '';
       this.close();
