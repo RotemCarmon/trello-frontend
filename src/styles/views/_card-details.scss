@@ -36,6 +36,7 @@
                 font-weight: 600;
                 font-size: 1.2em;
                 &[contenteditable]:focus {
+                    // TODO: set focus properties
                 }
             }
             margin-bottom: 20px;

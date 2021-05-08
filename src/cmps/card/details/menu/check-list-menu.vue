@@ -26,14 +26,16 @@ export default {
       this.$emit('close');
     },
     save() {
-      if (!this.title) return console.log('Must have a title'); // TODO: Show warning user msg 
+      if (!this.title) return console.log('Must have a title'); // TODO: Show warning user msg
       this.$emit('add', this.title);
       this.title = '';
       this.close();
     },
   },
   mounted() {
-    this.$refs.input.focus();
+    this.$nextTick(() => {
+      this.$refs.input.focus();
+    });
   },
   components: {
     popupMenu,
@@ -41,6 +43,3 @@ export default {
   },
 };
 </script>
-
-<style>
-</style>

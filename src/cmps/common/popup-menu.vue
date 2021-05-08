@@ -29,16 +29,14 @@ export default {
   },
   mounted() {
     const windowWidth = window.innerWidth;
-    const boundingClient = this.$refs.menu.getBoundingClientRect();
-    const clientWidth = this.$refs.menu.clientWidth;
-    // const scrollBarOffset = 18;
-    if (boundingClient.left + clientWidth > windowWidth) {
-      const diff = windowWidth - (boundingClient.left + clientWidth);
-      this.menuOffset = diff;
-    }
+    this.$nextTick(() => {
+      const boundingClient = this.$refs.menu.getBoundingClientRect();
+      const clientWidth = this.$refs.menu.clientWidth;
+      if (boundingClient.left + clientWidth > windowWidth - 15) {
+        const diff = windowWidth - (boundingClient.left + clientWidth);
+        this.menuOffset = diff;
+      }
+    });
   },
 };
 </script>
-
-<style>
-</style>
