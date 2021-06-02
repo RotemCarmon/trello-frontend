@@ -4,6 +4,7 @@ import homePage from '../views/home-page.vue'
 import boardPage from '../views/board-page.vue'
 import boardList from '../views/board-list.vue'
 import cardDetails from '../views/card-details.vue'
+import fourOfour from '../views/404.vue'
 
 Vue.use(VueRouter)
 
@@ -29,6 +30,12 @@ const routes = [
         path: '/board/:boardId/card/:listCardId'
       }
     ]
+  },
+  {
+    name: 'fallback',
+    path: '*',
+    component: fourOfour
+
   }
 ]
 
