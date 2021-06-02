@@ -10,12 +10,25 @@
     </div>
     <!-- List -->
     <div class="card-list custom-scroll" :class="{ 'add-open': isAddingCard }">
-      <card-preview
-        v-for="card in list.cards"
-        :card="card"
-        :key="card._id"
-        @removeCard="removeCard"
-      />
+      <draggable
+        v-model="list.cards"
+        group="list"
+        animation="300"
+        ghostClass="ghost"
+        chosenClass="chosen"
+        dragClass="drag"
+        forceFallback="true"
+        @end="moveTask"
+      >
+        <transition-group type="transition" name="flip-list">
+          <card-preview
+            v-for="card in list.cards"
+            :card="card"
+            :key="card._id"
+            @removeCard="removeCard"
+          />
+        </transition-group>
+      </draggable>
       <div class="add-card-container">
         <div v-if="isAddingCard" ref="add" class="add-card-title-input">
           <textarea
@@ -52,6 +65,7 @@
 import cardPreview from './card-preview';
 import saveBtn from '../common/save-btn';
 import actionList from '../list/action-list';
+import draggable from 'vuedraggable';
 export default {
   props: {
     list: Object,
@@ -98,6 +112,9 @@ export default {
     closeActionList() {
       this.isOpenAction = false;
     },
+    moveTask() {
+      this.$emit('update');
+    },
   },
   // TODO: move in to the add-item component
   watch: {
@@ -114,6 +131,7 @@ export default {
     cardPreview,
     saveBtn,
     actionList,
+    draggable,
   },
 };
 </script>

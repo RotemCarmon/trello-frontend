@@ -6,7 +6,23 @@
   >
     <board-header />
     <main class="board-container flex">
-      <card-list v-for="list in board.lists" :list="list" :key="list._id" />
+      <draggable
+        class="flex"
+        v-model="board.lists"
+        animation="300"
+        ghostClass="ghost"
+        chosenClass="chosen"
+        dragClass="drag"
+        forceFallback="true"
+        @end="updateBoard"
+      >
+        <card-list
+          v-for="list in board.lists"
+          :list="list"
+          :key="list._id"
+          @update="updateBoard"
+        />
+      </draggable>
       <add-list @add="addList" />
     </main>
     <transition name="fade">
@@ -19,6 +35,7 @@
 import cardList from '../cmps/card/card-list';
 import addList from '../cmps/list/add-list';
 import boardHeader from '../cmps/board-header';
+import draggable from 'vuedraggable';
 export default {
   name: 'board-page',
   created() {
@@ -38,6 +55,9 @@ export default {
       const { boardId } = this.$route.params;
       this.$store.dispatch('getBoard', boardId);
     },
+    updateBoard() {
+      this.$store.dispatch('updateBoard');
+    },
     addList(listTitle) {
       console.log('List Title', listTitle);
       this.$store.dispatch('addList', listTitle);
@@ -47,6 +67,7 @@ export default {
     cardList,
     boardHeader,
     addList,
+    draggable,
   },
 };
 </script>

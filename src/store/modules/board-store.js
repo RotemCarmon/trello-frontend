@@ -55,7 +55,7 @@ export default {
       const removedBoard = await boardService.removeBoard(boardId);
       console.log('removedBoard:', removedBoard)
     },
-    async updateBoard(context, board) {
+    async updateBoard(context, board = context.getters.getCurrBoard) {
       try {
         context.commit('setBoard', board)
         const updatedBoard = await boardService.updateBoard(board);
@@ -86,6 +86,17 @@ export default {
       currBoard.lists.splice(listIdx, 1)
       context.dispatch('updateBoard', currBoard)
     },
+    // updateList(context, list) {
+    //   try {
+    //     const currBoard = context.getters.getCurrBoard;
+    //     const oldListIdx = currBoard.lists.findIndex(l => l._id === list._id)
+    //     if (oldListIdx === -1) throw new Error(`The list ${list._id} was not found`);
+    //     currBoard.lists.splice(oldListIdx, 1, list)
+    //     context.dispatch('updateBoard', currBoard)
+    //   } catch (err) {
+    //     console.log('Coudln\'t update list', err);
+    //   }
+    // },
     // CARD
     getCard(context, { listId, cardId }) {
       try {
