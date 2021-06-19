@@ -97,6 +97,8 @@ export default {
     },
     addCheckList(title) {
       console.log('Adding ', title);
+      console.log('CARD ->>', this.card);
+      if (!this.card.checkLists) this.card.checkLists = [];
       this.card.checkLists.push({
         title,
         todos: [],

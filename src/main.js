@@ -5,6 +5,7 @@ import router from './router'
 import store from './store'
 import './styles/global.scss'
 import './plugins/font-awesome.js'
+import '@/directives/index.js';
 
 Vue.config.productionTip = false
 Vue.config.devtools = true

@@ -1,7 +1,15 @@
 <template>
+  <!-- @mouseup.stop="isEditTitle = false" -->
   <section class="card-list-container list-basic flex column space-between">
     <div class="list-header flex space-between align-center">
-      <span class="list-title" contenteditable="true">{{ list.title }}</span>
+      <span
+        class="list-title"
+        ref="title"
+        contenteditable="false"
+        v-click-outside="endEdit"
+        @click="setEdit"
+        >{{ list.title }}</span
+      >
       <font-awesome-icon
         :icon="['fal', 'ellipsis-h']"
         class="list-menu list-btn"
@@ -76,6 +84,7 @@ export default {
       isAddingCard: false,
       isOpenAction: false,
       newCardTitle: '',
+      isEditTitle: false,
     };
   },
   methods: {
@@ -119,6 +128,20 @@ export default {
       this.isOpenAction = false;
     },
     moveTask() {
+      this.$emit('update');
+    },
+    setEdit() {
+      this.isEditTitle = true;
+      this.$refs.title.contentEditable = this.isEditTitle;
+      this.$refs.title.focus();
+    },
+    endEdit(ev) {
+      if (!this.isEditTitle) return;
+      console.log('End Edit');
+      this.isEditTitle = false;
+      const elTitle = this.$refs.title;
+      elTitle.contentEditable = this.isEditTitle;
+      this.list.title = elTitle.innerText;
       this.$emit('update');
     },
   },

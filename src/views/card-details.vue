@@ -1,5 +1,5 @@
 <template>
-  <section v-if="card" class="card-modal">
+  <section v-if="card" @click="closeCard" class="card-modal">
     <div class="modal-screen flex justify-center">
       <div class="card-details-container">
         <!-- CLOSE BUTTON -->
