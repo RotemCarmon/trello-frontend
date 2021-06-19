@@ -108,7 +108,7 @@ export default {
       this.updateCard();
     },
     updateCard(card = this.card) {
-      this.$store.dispatch('updateCard', card);
+      this.$store.dispatch('updateCard', { card, listId: this.listId });
     },
     editTitle(ev) {
       console.log('Title Edit', ev.target.innerText);

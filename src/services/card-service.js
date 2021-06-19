@@ -24,9 +24,9 @@ function addCard({ board, listId, title }) {
   return copyBoard;
 }
 
-function updateCard({ board, card }) {
+function updateCard({ board, listId, card }) {
   const copyBoard = JSON.parse(JSON.stringify(board));
-  const currList = copyBoard.lists.find(list => list._id === card.inList.listId);
+  const currList = copyBoard.lists.find(list => list._id === listId);
   const cardIdx = currList.cards.findIndex(c => c._id === card._id);
   if (cardIdx === -1) {
     throw new Error(`The card ${card._id} was not found`);

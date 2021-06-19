@@ -131,10 +131,10 @@ export default {
         console.log('Coudln\'t add card', err);
       }
     },
-    updateCard(context, card) { // payload {listId, card}
+    updateCard(context, { card, listId }) { // payload {listId, card}
       try {
         const currBoard = context.getters.getCurrBoard;
-        const payload = { card, board: currBoard }
+        const payload = { card, listId, board: currBoard }
         const modifiedBoard = cardService.updateCard(payload);
         context.commit('setCard', card)
         // TODO: emit socket 'update-card'
