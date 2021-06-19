@@ -26,9 +26,7 @@ export default {
       this.$emit('removeCard', this.card._id);
     },
     openCard() {
-      const param = `${this.card.inList.listId}-${this.card._id}`;
-      const currPath = this.$router.currentRoute.fullPath;
-      this.$router.push({ path: `${currPath}/card/${param}` });
+      this.$emit('open', this.card._id)
     },
   },
   computed: {

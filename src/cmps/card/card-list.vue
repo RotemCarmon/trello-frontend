@@ -25,6 +25,7 @@
             v-for="card in list.cards"
             :card="card"
             :key="card._id"
+            @open="openCard"
             @removeCard="removeCard"
           />
         </transition-group>
@@ -93,6 +94,11 @@ export default {
       };
       this.$store.dispatch('addCard', payLoad);
       this.closeAddCard();
+    },
+    openCard(cardId) {
+      const param = `${this.list._id}-${cardId}`;
+      const currPath = this.$router.currentRoute.fullPath;
+      this.$router.push({ path: `${currPath}/card/${param}` });
     },
 
     removeList() {

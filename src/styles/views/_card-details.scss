@@ -39,6 +39,10 @@
                     // TODO: set focus properties
                 }
             }
+            small span {
+                color: $light-text;
+                text-decoration: underline;
+            }
             margin-bottom: 20px;
         }
 

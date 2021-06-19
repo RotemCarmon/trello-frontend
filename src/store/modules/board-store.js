@@ -11,6 +11,9 @@ export default {
     getCurrBoard({ currBoard }) {
       return JSON.parse(JSON.stringify(currBoard))
     },
+    getCurrList({ currBoard }) {
+      return (listId) => currBoard.lists.find((list) => list._id === listId)
+    },
     getCurrCard({ currCard }) {
       return JSON.parse(JSON.stringify(currCard));
     },

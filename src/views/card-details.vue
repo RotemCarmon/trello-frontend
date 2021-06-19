@@ -13,7 +13,7 @@
         <div class="card-title left-gap">
           <h3 contenteditable @input="editTitle">{{ card.title }}</h3>
           <small
-            >In list <span>{{ card.inList.listTitle }}</span></small
+            >In list <span>{{ list.title }}</span></small
           >
         </div>
         <!-- ############ -->
@@ -67,9 +67,17 @@ export default {
   created() {
     this.loadCard();
   },
+  data() {
+    return {
+      listId: null,
+    };
+  },
   computed: {
     card() {
       return this.$store.getters.getCurrCard;
+    },
+    list() {
+      return this.$store.getters.getCurrList(this.listId);
     },
     labels() {
       return this.$store.getters.getLabels.map((label, idx) => {
@@ -89,6 +97,7 @@ export default {
     loadCard() {
       const { listCardId } = this.$route.params;
       const [listId, cardId] = listCardId.split('-');
+      this.listId = listId;
       this.$store.dispatch('getCard', { listId, cardId });
     },
     closeCard() {
