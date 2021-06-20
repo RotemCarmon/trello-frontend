@@ -1,6 +1,6 @@
 <template>
-  <section v-if="card" @click="closeCard" class="card-modal">
-    <div class="modal-screen flex justify-center">
+  <section v-if="card" class="card-modal">
+    <div @click.self="closeCard" class="modal-screen flex justify-center">
       <div class="card-details-container">
         <!-- CLOSE BUTTON -->
         <button
@@ -28,6 +28,14 @@
             >
               <h3 class="details-section-header">Labels</h3>
               <label-list :labels="activeLabels" />
+            </section>
+            <!--  DUE DATE -->
+            <section
+              v-if="dueDate"
+              class="details-section detail-section-due-date left-gap"
+            >
+              <h3 class="details-section-header">Due Date</h3>
+              <p>{{ dueDate }}</p>
             </section>
             <!-- DESCRIPTION -->
             <card-description
@@ -88,6 +96,15 @@ export default {
     activeLabels() {
       const labels = this.labels;
       return labels.filter((label) => label.isActive);
+    },
+    dueDate() {
+      // console.log(typeof this.card.dueDate);
+      if (!this.card.dueDate) return '';
+      const date = new Date(this.card.dueDate);
+      return date.toLocaleDateString('en-US', {
+        month: 'long',
+        day: 'numeric',
+      });
     },
   },
   methods: {

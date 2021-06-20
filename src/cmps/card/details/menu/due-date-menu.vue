@@ -8,7 +8,7 @@
         v-model="date"
         :inline="true"
       />
-      <save-btn :withClose="false" />
+      <save-btn @save="selectDate" :withClose="false" />
     </template>
   </popup-menu>
 </template>
@@ -29,7 +29,8 @@ export default {
       this.$emit('close');
     },
     selectDate() {
-      console.log(this.date);
+      // console.log(this.date);
+      this.$emit('setDate', this.date)
       this.close();
     },
   },

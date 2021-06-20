@@ -36,7 +36,10 @@
       icon="clock"
       prefix="fal"
       ><template v-slot:menu
-        ><due-date-menu v-if="currMenu === 'dueDate'" @close="onCloseMenu"
+        ><due-date-menu
+          v-if="currMenu === 'dueDate'"
+          @close="onCloseMenu"
+          @setDate="setDueDate"
       /></template>
     </details-button>
     <!-- Members -->
@@ -103,6 +106,10 @@ export default {
         title,
         todos: [],
       });
+      this.$emit('update', this.card);
+    },
+    setDueDate(date) {
+      this.card.dueDate = date;
       this.$emit('update', this.card);
     },
   },
