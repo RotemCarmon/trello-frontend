@@ -35,7 +35,13 @@
               class="details-section detail-section-due-date left-gap"
             >
               <h3 class="details-section-header">Due Date</h3>
-              <p>{{ dueDate }}</p>
+              <button class="details-btn due-date-btn">
+                {{ dueDate }}
+
+                <button class="remove-btn hide" @click="removeDueDate">
+                  <font-awesome-icon :icon="['fal', 'times']" />
+                </button>
+              </button>
             </section>
             <!-- DESCRIPTION -->
             <card-description
@@ -69,6 +75,7 @@ import cardDescription from '../cmps/card/details/card-description';
 import labelList from '../cmps/card/details/label-list';
 import cardDetailsActions from '../cmps/card/details/card-details-actions';
 import checkMain from '../cmps/card/details/check-list/check-main';
+import dateFormat from 'dateformat';
 
 export default {
   name: 'card-details',
@@ -98,13 +105,8 @@ export default {
       return labels.filter((label) => label.isActive);
     },
     dueDate() {
-      // console.log(typeof this.card.dueDate);
       if (!this.card.dueDate) return '';
-      const date = new Date(this.card.dueDate);
-      return date.toLocaleDateString('en-US', {
-        month: 'long',
-        day: 'numeric',
-      });
+      return dateFormat(this.card.dueDate, 'mmmm dS, h:MM TT');
     },
   },
   methods: {
@@ -131,6 +133,10 @@ export default {
       console.log('Title Edit', ev.target.innerText);
       const txt = ev.target.innerText;
       this.card.title = txt;
+      this.updateCard();
+    },
+    removeDueDate() {
+      this.card.dueDate = null
       this.updateCard();
     },
   },

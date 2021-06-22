@@ -100,3 +100,7 @@
 .ratio-poster {
     @include aspect-ratio(100, 150);
 }
+
+.hide {
+   opacity: 0;
+}

@@ -1,10 +1,12 @@
 .header-container {
-  display: grid;
   background-color: rgba(0,0,0,.32);
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: 40px;
   align-items: center;
   color: #fff;
+}
+.header-grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 40px;
 }
 
 .logo {

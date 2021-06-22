@@ -1,9 +1,78 @@
-import { makeId } from './util';
+import { makeId } from './util-service';
 import { storageService } from './async-storage.service.js';
 
 const KEY = 'board'
 
-var gBoards = [
+const gMemebers = [
+  {
+    _id: 'u101',
+    name: 'Rotem Carmon',
+    email: 'tetch6@gmail.com',
+    imgUrl: 'https://res.cloudinary.com/rotemc/image/upload/v1624316086/headshot_kppzkw.jpg'
+  },
+  {
+    _id: 'u102',
+    name: 'Quamika Elmer',
+    email: 'YWallace@vestibulum.net',
+    imgUrl: 'https://randomuser.me/api/portraits/thumb/women/44.jpg'
+  },
+  {
+    _id: 'u103',
+    name: 'Sandro Symes',
+    email: 'DDayton@rutrum.org',
+    imgUrl: 'https://randomuser.me/api/portraits/thumb/women/12.jpg'
+  },
+  {
+    _id: 'u104',
+    name: 'Destinee Jun',
+    email: 'DHobson@odio.gov',
+    imgUrl: 'https://randomuser.me/api/portraits/thumb/women/1.jpg'
+  },
+  {
+    _id: 'u105',
+    name: 'Maki Logsden',
+    email: 'PYoung@sollicitudin.net',
+    imgUrl: 'https://randomuser.me/api/portraits/thumb/women/23.jpg'
+  },
+  {
+    _id: 'u106',
+    name: 'Canzady Downing',
+    email: 'LAlunde@porta.ly',
+    imgUrl: 'https://randomuser.me/api/portraits/thumb/women/40.jpg'
+  },
+  {
+    _id: 'u107',
+    name: 'Ying Boynton',
+    email: 'CHopkins@placerat.gov',
+    imgUrl: 'https://randomuser.me/api/portraits/thumb/women/14.jpg'
+  },
+  {
+    _id: 'u108',
+    name: 'Allana Culaciati',
+    email: 'BPoer@massa.org',
+    imgUrl: 'https://randomuser.me/api/portraits/thumb/women/22.jpg'
+  },
+  {
+    _id: 'u109',
+    name: 'Sherrye Vinton',
+    email: 'GBirnstill@consectetur.ly',
+    imgUrl: 'https://randomuser.me/api/portraits/thumb/women/50.jpg'
+  },
+  {
+    _id: 'u110',
+    name: 'Howard Higdon',
+    email: 'SSlonaker@porttitor.com',
+    imgUrl: 'https://randomuser.me/api/portraits/thumb/women/99.jpg'
+  },
+  {
+    _id: 'u111',
+    name: 'Milton Clanton',
+    email: 'DBelched@amet.org',
+    imgUrl: 'https://randomuser.me/api/portraits/thumb/women/88.jpg'
+  }
+];
+
+const gBoards = [
   {
     _id: 'b101',
     title: 'My board',
@@ -21,7 +90,7 @@ var gBoards = [
         _id: 'u101',
         name: 'Rotem Carmon',
         email: 'tetch6@gmail.com',
-        imgUrl: ''
+        imgUrl: 'https://res.cloudinary.com/rotemc/image/upload/v1624316086/headshot_kppzkw.jpg'
       }
     ],
     lists: [
@@ -87,7 +156,7 @@ var gBoards = [
             },
             title: 'My card',
             description: 'This is the description',
-            dueDate: new Date(),
+            dueDate: '',
           },
           {
             _id: 'c102',
@@ -100,7 +169,7 @@ var gBoards = [
             },
             title: 'My other card',
             description: 'This is the description of the second card',
-            dueDate: new Date(),
+            dueDate: '',
           }
         ]
       },
@@ -123,7 +192,7 @@ var gBoards = [
             },
             title: 'In progress card',
             description: 'lorem ipsom',
-            dueDate: new Date(),
+            dueDate: '',
 
           },
           {
@@ -154,7 +223,7 @@ var gBoards = [
       { color: '#89609e', txt: '', isActive: false },
       { color: '#055a8c', txt: '', isActive: false },
     ],
-    membrers: [],
+    members: [],
     lists: [
       {
         _id: 'l103',
@@ -223,13 +292,14 @@ export const boardService = {
   removeBoard,
   addBoard,
   updateBoard,
-  getEmptyList
+  getEmptyList,
+  getMemebers
 }
 
 function _getEmptyBoard() {
   return {
     title: 'New Board',
-    membrers: [],
+    members: [],
     labels: [],
     lists: [
       {
@@ -249,3 +319,6 @@ function _getEmptyBoard() {
 //   const id = gBoards[gBoards.length - 1]._id
 //   return id.charAt(0) + (parseInt(id.slice(1)) + 1)
 // }
+async function getMemebers() {
+  return await gMemebers
+}

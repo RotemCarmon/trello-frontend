@@ -1,4 +1,4 @@
-import { makeId } from './util';
+import { makeId } from './util-service';
 
 function removeCard({ board, listId, cardId }) {
   const copyBoard = JSON.parse(JSON.stringify(board));

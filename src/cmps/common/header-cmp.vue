@@ -1,5 +1,5 @@
 <template>
-  <header class="header-container">
+  <header class="header-container header-grid-container">
     <div class="btn-header sqare-btn">
       <font-awesome-icon icon="home" />
     </div>

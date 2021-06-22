@@ -67,6 +67,9 @@
 
 .details-btn {
     // line-height: 20px;
+    display: flex;
+    align-items: center;
+    line-height: 1;
     border-radius: 3px;
     background-color: rgba(9, 30, 66, 0.08);
     padding: 6px 12px;
@@ -77,4 +80,26 @@
         background-color: rgba(9, 30, 66, 0.122);
         cursor: pointer;
     }
+}
+
+.due-date-btn {
+    position: relative;
+}
+
+.due-date-btn:hover {
+    color: rgba($color: $text, $alpha: 0.1);
+    transition: color 0.4s;
+    transition: opacity 0.4s;
+    & .hide {
+        opacity: 1;
+        transform: rotate(90deg) scale(1.2);
+        transition: transform 0.4s;
+    }
+}
+
+.remove-btn {
+    color: rgba($color: $text, $alpha: 1);
+    position: absolute;
+    right: 0.6em;
+    transform: rotate(45deg);
 }

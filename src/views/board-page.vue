@@ -40,6 +40,7 @@ export default {
   name: 'board-page',
   created() {
     console.log('board page!');
+    console.log(this.$route.params.boardId);
     this.loadBoard();
   },
   computed: {
@@ -61,6 +62,11 @@ export default {
     addList(listTitle) {
       console.log('List Title', listTitle);
       this.$store.dispatch('addList', listTitle);
+    },
+  },
+  watch: {
+    '$route.params.boardId'() {
+      this.loadBoard()
     },
   },
   components: {

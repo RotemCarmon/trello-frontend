@@ -4,10 +4,7 @@
       <h3>Due Date</h3>
     </template>
     <template v-slot:main>
-      <date-picker
-        v-model="date"
-        :inline="true"
-      />
+      <date-picker v-model="date" :inline="true" :use12h="true" :show-second="false" type="datetime" />
       <save-btn @save="selectDate" :withClose="false" />
     </template>
   </popup-menu>
@@ -16,7 +13,10 @@
 <script>
 import saveBtn from '../../../common/save-btn';
 import popupMenu from '../../../common/popup-menu';
-import datePicker from 'vuejs-datepicker';
+// import datePicker from 'vuejs-datepicker';
+import datePicker from 'vue2-datepicker';
+import 'vue2-datepicker/index.css';
+
 export default {
   name: 'due-date-menu',
   data() {
@@ -29,8 +29,8 @@ export default {
       this.$emit('close');
     },
     selectDate() {
-      // console.log(this.date);
-      this.$emit('setDate', this.date)
+      console.log(this.date);
+      this.$emit('setDate', this.date);
       this.close();
     },
   },
