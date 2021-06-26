@@ -1,7 +1,7 @@
 <template>
   <div v-if="member" class="member-avatar flex center-center">
-    {{ avatarName }}
-    <!-- {{ member.name }} -->
+    <img v-if="member.imgUrl" :src="member.imgUrl" />
+    <span v-else >{{ avatarName }}</span>
   </div>
 </template>
 
@@ -19,8 +19,10 @@ export default {
   computed: {
     avatarName() {
       const names = this.member.name.split(' ');
-      return names[0].charAt(0).toUpperCase() + names[1].charAt(0).toUpperCase();
-      // return 'RC'
+      console.log('names:', names)
+      return (
+        names[0].charAt(0).toUpperCase() + names[1].charAt(0).toUpperCase()
+      );
     },
   },
 };
@@ -28,13 +30,19 @@ export default {
 
 <style lang="scss" scoped>
 .member-avatar {
-  height: 30px;
-  width: 30px;
+  height: 35px;
+  width: 35px;
   border-radius: 50%;
   color: #5d5d5d;
   background-color: #dadadb;
   font-weight: 700;
-  margin-inline-end: 12px;
-  font-size: .8em;
+  // margin-inline-end: 12px;
+  font-size: 0.8em;
+   img {
+    border-radius: 50%;
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+  }
 }
 </style>

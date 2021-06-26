@@ -52,7 +52,9 @@
         <members-menu
           v-if="currMenu === 'members'"
           @close="onCloseMenu"
+          @update="updateMembers"
           :members="boardMembers"
+          :existingMembers="card.members"
       /></template>
     </details-button>
   </section>
@@ -110,6 +112,10 @@ export default {
     },
     setDueDate(date) {
       this.card.dueDate = date;
+      this.$emit('update', this.card);
+    },
+    updateMembers(members) {
+      this.card.members = members 
       this.$emit('update', this.card);
     },
   },

@@ -47,7 +47,14 @@
         Invite
       </div>
       <transition name="fade">
-        <popup-menu v-if="openMenu === 'invite'" @close="toggleMenu">
+        <member-menu
+         v-if="openMenu === 'invite'"
+          :members="members"
+          :existingMembers="this.board.members"
+          @close="toggleMenu(null)"
+          @update="updateMembers"
+        />
+        <!-- <popup-menu v-if="openMenu === 'invite'" @close="toggleMenu">
           <template v-slot:header>
             <h3>Invite Members</h3>
           </template>
@@ -69,7 +76,7 @@
               </li>
             </ul>
           </template>
-        </popup-menu>
+        </popup-menu> -->
       </transition>
     </div>
 
@@ -81,7 +88,8 @@
 
 <script>
 import popupMenu from './common/popup-menu';
-import memberAvatar from './member/member-avatar';
+import memberAvatar from './common/member-avatar';
+import memberMenu from './card/details/menu/members-menu.vue';
 import { boardService } from '../services/board-service';
 export default {
   data() {
@@ -103,27 +111,19 @@ export default {
     },
     async getMemebers() {
       this.members = await boardService.getMemebers();
-      console.log('this.members:', this.members);
       this.toggleMenu('invite');
     },
-    addMemeber(member) {
-      const memberIdx = this.board.members.findIndex((m) => member._id === m._id);
-      if (memberIdx !== -1) {
-        this.board.members.splice(memberIdx, 1);
-      } else {
-        this.board.members.push(member);
-      }
-      this.$store.dispatch('updateBoard');
-      this.toggleMenu(null);
-    },
-    isMemberInBoard(memberId) {
-      return this.board.members.find((member) => member._id === memberId);
-    },
+    updateMembers(members) {
+      console.log('members', members);
+      this.board.members = members
+      this.$store.dispatch('updateBoard', this.board)
+    }
   },
   async created() {
     this.boards = await this.$store.dispatch('getBoards');
   },
   components: {
+    memberMenu,
     popupMenu,
     memberAvatar,
   },

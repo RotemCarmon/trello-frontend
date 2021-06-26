@@ -43,6 +43,19 @@
                 </button>
               </button>
             </section>
+            <section
+              v-if="card.members && card.members.length"
+              class="member-list-container left-gap"
+            >
+              <h3 class="details-section-header">Members</h3>
+              <div class="member-list flex">
+                <member-avatar
+                  v-for="member in card.members"
+                  :key="member._id"
+                  :member="member"
+                />
+              </div>
+            </section>
             <!-- DESCRIPTION -->
             <card-description
               @save="updateDesc"
@@ -75,6 +88,7 @@ import cardDescription from '../cmps/card/details/card-description';
 import labelList from '../cmps/card/details/label-list';
 import cardDetailsActions from '../cmps/card/details/card-details-actions';
 import checkMain from '../cmps/card/details/check-list/check-main';
+import memberAvatar from '../cmps/common/member-avatar.vue';
 import dateFormat from 'dateformat';
 
 export default {
@@ -136,7 +150,7 @@ export default {
       this.updateCard();
     },
     removeDueDate() {
-      this.card.dueDate = null
+      this.card.dueDate = null;
       this.updateCard();
     },
   },
@@ -146,6 +160,7 @@ export default {
     cardDescription,
     cardDetailsActions,
     checkMain,
+    memberAvatar,
   },
 };
 </script>

@@ -1,31 +1,23 @@
 <template>
-  <!-- <section class="members-menu-container popup-menu">
-    <h3>Members</h3>
-    <font-awesome-icon :icon="['fal','times']" class="close-btn" @click.stop="close" />
-    <ul class="member-list clean-list">
-      <li
-        class="member-preview flex align-center"
-        v-for="member in members"
-        :key="member._id"
-      >
-        <member-avatar :member="member" />
-        {{ member.name }}
-      </li>
-    </ul>
-  </section> -->
   <popup-menu @close="close" class="members-menu-container">
     <template v-slot:header>
       <h3>Members</h3>
     </template>
     <template v-slot:main>
-      <ul class="member-list clean-list">
+      <ul v-if="members" class="memeber-list clean-list">
         <li
-          class="member-preview flex align-center"
           v-for="member in members"
           :key="member._id"
+          @click="addMemeber(member)"
+          class="flex align-center"
         >
           <member-avatar :member="member" />
-          {{ member.name }}
+          <span>{{ member.name }}</span>
+          <font-awesome-icon
+            v-if="isMemberInBoard(member._id)"
+            class="check-mark"
+            :icon="['fal', 'check']"
+          />
         </li>
       </ul>
     </template>
@@ -39,15 +31,34 @@ export default {
   name: 'members-menu',
   props: {
     members: Array,
+    existingMembers: Array,
   },
   methods: {
     close() {
       this.$emit('close');
     },
+    update(copyMembers) {
+      this.$emit('update', copyMembers);
+    },
+    addMemeber(member) {
+      const copyMembers = JSON.parse(JSON.stringify(this.existingMembers));
+      const memberIdx = copyMembers.findIndex((m) => member._id === m._id);
+      if (memberIdx !== -1) {
+        copyMembers.splice(memberIdx, 1);
+      } else {
+        copyMembers.push(member);
+      }
+      this.update(copyMembers);
+      this.close();
+    },
+    isMemberInBoard(memberId) {
+      if (!this.existingMembers) return;
+      return this.existingMembers.find((member) => member._id === memberId);
+    },
   },
   components: {
     memberAvatar,
-    popupMenu
+    popupMenu,
   },
 };
 </script>

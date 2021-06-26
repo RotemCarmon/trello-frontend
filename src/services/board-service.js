@@ -157,6 +157,7 @@ const gBoards = [
             title: 'My card',
             description: 'This is the description',
             dueDate: '',
+            members: []
           },
           {
             _id: 'c102',
