@@ -58,21 +58,21 @@ export default {
       const idx = todos.findIndex((t) => t.id === todoId);
       if (idx === -1) return console.log("Can't remove todo");
       todos.splice(idx, 1);
-      this.$emit('update', this.list);
+      this.$emit('update', 'Removed todo');
     },
-    updateTodos(todo) {
+    updateTodos({ todo, activity }) {
       const todos = this.list.todos;
       const idx = todos.findIndex((t) => t.id === todo.id);
       if (idx === -1) return console.log("Can't update todos");
       todos.splice(idx, 1, todo);
-      this.$emit('update', this.list);
+      this.$emit('update', activity);
     },
     addTodo(txt) {
       const todos = this.list.todos;
       this.newTodo.txt = txt;
       todos.push(this.newTodo);
       this.newTodo = cardService.getEmptyTodo();
-      this.$emit('update', this.list);
+      this.$emit('update', 'Added Todo');
       this.toggleAddTodo();
     },
     toggleAddTodo() {

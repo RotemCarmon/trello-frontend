@@ -24,6 +24,9 @@ export default {
       // can I mutate OBJ in nested ARRAY?
       // return currBoard?.labels;
       return JSON.parse(JSON.stringify(currBoard?.labels))
+    },
+    getActivities({ currBoard }) {
+      return JSON.parse(JSON.stringify(currBoard?.activities))
     }
   },
   mutations: {
@@ -131,12 +134,18 @@ export default {
         console.log('Coudln\'t add card', err);
       }
     },
-    updateCard(context, { card, listId }) { // payload {listId, card}
+    updateCard(context, { card, listId, activity }) { // payload {listId, card}
       try {
         const currBoard = context.getters.getCurrBoard;
         const payload = { card, listId, board: currBoard }
         const modifiedBoard = cardService.updateCard(payload);
         context.commit('setCard', card)
+        const activityToAdd = boardService.createActivity(activity)
+        activityToAdd.card = {
+          _id: card._id,
+          title: card.title
+        }
+        modifiedBoard.activities.unshift(activityToAdd)
         // TODO: emit socket 'update-card'
         context.dispatch('updateBoard', modifiedBoard)
       } catch (err) {

@@ -8,7 +8,7 @@
 
     .popup-menu {
         color: $text;
-        top: 40px;
+        top: $header-hight;
         transform: translate(0);
     }
 }

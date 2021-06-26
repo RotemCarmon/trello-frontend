@@ -5,7 +5,7 @@
         <!-- CLOSE BUTTON -->
         <button
           @click="closeCard"
-          class="close-card hover-bg-btn flex center-center sqare-btn"
+          class="close-menu-btn hover-bg-btn flex center-center sqare-btn"
         >
           <font-awesome-icon :icon="['fal', 'times']" />
         </button>
@@ -19,7 +19,7 @@
         <!-- ############ -->
         <!-- MAIN CONTENT -->
         <!-- ############ -->
-        <main class="main-card-details custom-scroll flex">
+        <main class="main-card-details flex">
           <section class="card-content-container grow-1">
             <!-- LABELS -->
             <section
@@ -68,10 +68,8 @@
             <!-- TODO: split to component -->
             <section class="details-section details-section-activity">
               <h3 class="details-section-header left-gap">Activity</h3>
-              <div class="activity-add left-gap">
-                <input type="text" placeholder="write a comment" />
-              </div>
-              <activity-list :activities="card.activities" />
+              <activity-add />
+              <activity-list :activities="activities" />
             </section>
           </section>
           <!-- ACTIONS -->
@@ -84,12 +82,13 @@
 </template>
 
 <script>
-import activityList from '../cmps/card/details/activity-list';
+import activityList from '../cmps/card/details/activity/activity-list';
+import activityAdd from '../cmps/card/details/activity/activity-add';
 import cardDescription from '../cmps/card/details/card-description';
 import labelList from '../cmps/card/details/label-list';
 import cardDetailsActions from '../cmps/card/details/card-details-actions';
 import checkMain from '../cmps/card/details/check-list/check-main';
-import memberAvatar from '../cmps/common/member-avatar.vue';
+import memberAvatar from '../cmps/common/member-avatar';
 import dateFormat from 'dateformat';
 
 export default {
@@ -123,6 +122,12 @@ export default {
       if (!this.card.dueDate) return '';
       return dateFormat(this.card.dueDate, 'mmmm dS, h:MM TT');
     },
+    activities() {
+      const activits = this.$store.getters.getActivities;
+      return activits.filter(
+        (activity) => activity?.card?._id === this.card._id
+      );
+    },
   },
   methods: {
     close() {
@@ -139,20 +144,25 @@ export default {
     },
     updateDesc(desc) {
       this.card.description = desc;
-      this.updateCard();
+      this.updateCard({ activity: 'Updated description' });
     },
-    updateCard(card = this.card) {
-      this.$store.dispatch('updateCard', { card, listId: this.listId });
+    updateCard({ card = this.card, activity }) {
+      // TODO: get action for activities
+      this.$store.dispatch('updateCard', {
+        card,
+        listId: this.listId,
+        activity,
+      });
     },
     editTitle(ev) {
       console.log('Title Edit', ev.target.innerText);
       const txt = ev.target.innerText;
       this.card.title = txt;
-      this.updateCard();
+      this.updateCard({ activity: 'Updated title' });
     },
     removeDueDate() {
       this.card.dueDate = null;
-      this.updateCard();
+      this.updateCard({ activity: 'Removed Due date' });
     },
   },
   components: {
@@ -162,6 +172,7 @@ export default {
     cardDetailsActions,
     checkMain,
     memberAvatar,
+    activityAdd,
   },
 };
 </script>

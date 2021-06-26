@@ -1,8 +1,8 @@
 <template>
   <section class="activity-list">
     <activity-preview
-      v-for="(activity, idx) in activities"
-      :key="idx"
+      v-for="(activity) in activities"
+      :key="activity._id"
       :activity="activity"
     />
   </section>

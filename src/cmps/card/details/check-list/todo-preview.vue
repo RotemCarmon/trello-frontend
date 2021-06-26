@@ -7,7 +7,7 @@
     <input
       type="checkbox"
       v-model="todo.isDone"
-      @change="updateTodo"
+      @change="updateTodo(`Set todo as ${todo.isDone? 'done':'undone'}`)"
       class="check-box"
     />
     <div class="todo-preview">
@@ -47,15 +47,15 @@ export default {
     };
   },
   methods: {
-    updateTodo() {
-      this.$emit('updateTodo', this.todo);
+    updateTodo(activity) {
+      this.$emit('updateTodo', { todo: this.todo, activity });
     },
     removeTodo() {
       this.$emit('remove', this.todo.id);
     },
     editTodo(txt) {
       this.todo.txt = txt;
-      this.updateTodo();
+      this.updateTodo('Edited Todo');
       this.toggleEdit();
     },
     toggleEdit() {

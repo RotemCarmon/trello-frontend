@@ -94,11 +94,16 @@ export default {
     },
     setActiveLabel(idx) {
       const card = this.card;
+      let activity = '';
       if (card.labels.includes(idx)) {
         const _idx = card.labels.findIndex((l) => l === idx);
         if (_idx !== -1) card.labels.splice(_idx, 1);
-      } else card.labels.push(idx);
-      this.$emit('update', card);
+        activity = 'Removed label';
+      } else {
+        card.labels.push(idx);
+        activity = 'Added label';
+      }
+      this.$emit('update', { card, activity });
     },
     addCheckList(title) {
       console.log('Adding ', title);
@@ -108,15 +113,18 @@ export default {
         title,
         todos: [],
       });
-      this.$emit('update', this.card);
+      this.$emit('update', {
+        card: this.card,
+        activity: 'Added new checklist',
+      });
     },
     setDueDate(date) {
       this.card.dueDate = date;
-      this.$emit('update', this.card);
+      this.$emit('update', { card: this.card, activity: 'Set due date' });
     },
     updateMembers(members) {
-      this.card.members = members 
-      this.$emit('update', this.card);
+      this.card.members = members;
+      this.$emit('update', { card: this.card, activity: 'Updated members' });
     },
   },
   components: {

@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import homePage from '../views/home-page.vue'
-import boardPage from '../views/board-page.vue'
+import boardDetails from '../views/board-details.vue'
 import boardList from '../views/board-list.vue'
 import cardDetails from '../views/card-details.vue'
 import fourOfour from '../views/404.vue'
@@ -20,8 +20,8 @@ const routes = [
     path: '/board-list'
   },
   {
-    name: 'board-page',
-    component: boardPage,
+    name: 'board-details',
+    component: boardDetails,
     path: '/board/:boardId',
     children: [
       {

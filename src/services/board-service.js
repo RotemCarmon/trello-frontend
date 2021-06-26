@@ -1,7 +1,15 @@
 import { makeId } from './util-service';
 import { storageService } from './async-storage.service.js';
 
-const KEY = 'board'
+const KEY = 'board';
+
+// Just for now
+const currMember = {
+  _id: 'u101',
+  name: 'Rotem Carmon',
+  email: 'tetch6@gmail.com',
+  imgUrl: 'https://res.cloudinary.com/rotemc/image/upload/v1624316086/headshot_kppzkw.jpg'
+}
 
 const gMemebers = [
   {
@@ -211,6 +219,23 @@ const gBoards = [
           }
         ]
       }
+    ],
+    activities: [
+      {
+        _id: 'a101',
+        txt: 'Changed Color',
+        createdAt: 1622913547674,
+        byMember: {
+          _id: 'u101',
+          name: 'Rotem Carmon',
+          email: 'tetch6@gmail.com',
+          imgUrl: 'https://res.cloudinary.com/rotemc/image/upload/v1624316086/headshot_kppzkw.jpg'
+        },
+        card: {
+          _id: 'c101',
+          title: 'Replace Logo'
+        }
+      }
     ]
   },
   {
@@ -248,7 +273,8 @@ const gBoards = [
           }
         ]
       }
-    ]
+    ],
+    activities: []
   }
 ];
 
@@ -287,6 +313,15 @@ function getEmptyList(listTitle = '') {
   }
 }
 
+function createActivity(txt) {
+  return {
+    _id: 'a' + makeId(),
+    txt,
+    createdAt: Date.now(),
+    byMember: currMember,
+  }
+}
+
 export const boardService = {
   getBoards,
   getBoardById,
@@ -294,7 +329,8 @@ export const boardService = {
   addBoard,
   updateBoard,
   getEmptyList,
-  getMemebers
+  getMemebers,
+  createActivity
 }
 
 function _getEmptyBoard() {

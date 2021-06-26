@@ -23,14 +23,14 @@ export default {
     },
   },
   methods: {
-    updateTodos() {
-      this.$emit('update');
+    updateTodos(activity) {
+      this.$emit('update', { activity });
     },
     removeList(id) {
       const idx = this.checkLists.findIndex((list) => list.id === id);
       if (idx === -1) return console.log("Can't remove list");
       this.checkLists.splice(idx, 1);
-      this.updateTodos()
+      this.updateTodos('Removed list');
     },
   },
   components: {
@@ -39,5 +39,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

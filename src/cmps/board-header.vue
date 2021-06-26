@@ -48,40 +48,19 @@
       </div>
       <transition name="fade">
         <member-menu
-         v-if="openMenu === 'invite'"
+          v-if="openMenu === 'invite'"
           :members="members"
           :existingMembers="this.board.members"
           @close="toggleMenu(null)"
           @update="updateMembers"
         />
-        <!-- <popup-menu v-if="openMenu === 'invite'" @close="toggleMenu">
-          <template v-slot:header>
-            <h3>Invite Members</h3>
-          </template>
-          <template v-slot:main>
-            <ul v-if="members" class="memeber-list clean-list">
-              <li
-                v-for="member in members"
-                :key="member._id"
-                @click="addMemeber(member)"
-                class="flex align-center"
-              >
-                <member-avatar :member="member" />
-                <span>{{ member.name }}</span>
-                <font-awesome-icon
-                  v-if="isMemberInBoard(member._id)"
-                  class="check-mark"
-                  :icon="['fal', 'check']"
-                />
-              </li>
-            </ul>
-          </template>
-        </popup-menu> -->
       </transition>
     </div>
 
-    <div class="board-header-right flex">
-      <div class="board-controllers"></div>
+    <div class="board-header-right flex justify-end">
+      <div class="board-controllers btn-header" @click="openBoardMenu">
+        <font-awesome-icon class="" :icon="['fal', 'sliders-h']" />
+      </div>
     </div>
   </section>
 </template>
@@ -89,7 +68,7 @@
 <script>
 import popupMenu from './common/popup-menu';
 import memberAvatar from './common/member-avatar';
-import memberMenu from './card/details/menu/members-menu.vue';
+import memberMenu from './card/details/menu/members-menu';
 import { boardService } from '../services/board-service';
 export default {
   data() {
@@ -115,8 +94,11 @@ export default {
     },
     updateMembers(members) {
       console.log('members', members);
-      this.board.members = members
-      this.$store.dispatch('updateBoard', this.board)
+      this.board.members = members;
+      this.$store.dispatch('updateBoard', this.board);
+    },
+    openBoardMenu() {
+      this.$emit('openMenu')
     }
   },
   async created() {

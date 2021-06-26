@@ -1,11 +1,13 @@
 <template>
-  <section class="details-section details-section-description left-gap">
+  <section
+    class="details-section details-section-description left-gap"
+  >
     <h3 class="details-section-header">Description</h3>
-    <div v-if="!editableDescription || isEditDesc" class="save-description">
-      <resizeable-input v-model="editableDescription" />
-      <save-btn @save="updateDesc" @close="closeDesc" />
+    <div v-if="!descToEdit || isEdit" class="save-description">
+      <resizeable-input v-model="descToEdit" />
+      <save-btn @save="updateDesc" @close="toggleEdit" />
     </div>
-    <p @click="isEditDesc = true" v-else>{{ editableDescription }}</p>
+    <p @click="toggleEdit" v-else>{{ descToEdit }}</p>
   </section>
 </template>
 
@@ -15,28 +17,28 @@ import saveBtn from '../../common/save-btn';
 export default {
   name: 'card-description',
   props: {
-    description: String
+    description: String,
   },
   data() {
     return {
-      isEditDesc: false,
-      editableDescription: this.description
-    }
+      isEdit: false,
+      descToEdit: this.description,
+    };
   },
   methods: {
     updateDesc() {
-      this.closeDesc()
-      console.log('Desc', this.editableDescription);
-      this.$emit('save', this.editableDescription)
+      this.toggleEdit();
+      console.log('Desc', this.descToEdit);
+      this.$emit('save', this.descToEdit);
     },
-    closeDesc() {
-      this.isEditDesc = false
-    }
+    toggleEdit() {
+      this.isEdit = !this.isEdit;
+    },
   },
   components: {
     resizeableInput,
-    saveBtn
-  }
+    saveBtn,
+  },
 };
 </script>
 

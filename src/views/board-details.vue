@@ -1,10 +1,10 @@
 <template>
   <section
     v-if="board"
-    class="board-page-container"
+    class="board-details-container"
     :style="{ backgroundColor: bgc }"
   >
-    <board-header />
+    <board-header @openMenu="toggleMenu" />
     <main class="board-container flex">
       <draggable
         class="flex"
@@ -25,6 +25,7 @@
       </draggable>
       <add-list @add="addList" />
     </main>
+    <board-menu :class="{ 'open-menu': isMenuOpen }" @close="toggleMenu" />
     <transition name="fade">
       <router-view />
     </transition>
@@ -35,13 +36,19 @@
 import cardList from '../cmps/card/card-list';
 import addList from '../cmps/list/add-list';
 import boardHeader from '../cmps/board-header';
+import boardMenu from '../cmps/common/board-menu';
 import draggable from 'vuedraggable';
 export default {
-  name: 'board-page',
+  name: 'board-details',
   created() {
     console.log('board page!');
     console.log(this.$route.params.boardId);
     this.loadBoard();
+  },
+  data() {
+    return {
+      isMenuOpen: false,
+    };
   },
   computed: {
     board() {
@@ -63,10 +70,13 @@ export default {
       console.log('List Title', listTitle);
       this.$store.dispatch('addList', listTitle);
     },
+    toggleMenu() {
+      this.isMenuOpen = !this.isMenuOpen;
+    },
   },
   watch: {
     '$route.params.boardId'() {
-      this.loadBoard()
+      this.loadBoard();
     },
   },
   components: {
@@ -74,6 +84,7 @@ export default {
     boardHeader,
     addList,
     draggable,
+    boardMenu,
   },
 };
 </script>

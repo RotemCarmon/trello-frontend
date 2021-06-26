@@ -1,7 +1,7 @@
 <template>
   <div v-if="member" class="member-avatar flex center-center">
     <img v-if="member.imgUrl" :src="member.imgUrl" />
-    <span v-else >{{ avatarName }}</span>
+    <span v-else>{{ avatarName }}</span>
   </div>
 </template>
 
@@ -19,7 +19,7 @@ export default {
   computed: {
     avatarName() {
       const names = this.member.name.split(' ');
-      console.log('names:', names)
+      if (names.length < 2) return names[0].charAt(0).toUpperCase();
       return (
         names[0].charAt(0).toUpperCase() + names[1].charAt(0).toUpperCase()
       );
@@ -38,7 +38,7 @@ export default {
   font-weight: 700;
   // margin-inline-end: 12px;
   font-size: 0.8em;
-   img {
+  img {
     border-radius: 50%;
     object-fit: cover;
     height: 100%;
