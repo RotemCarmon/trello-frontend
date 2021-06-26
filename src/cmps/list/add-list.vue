@@ -18,7 +18,7 @@
         >
           + Add another list
         </button>
-        <div v-if="isAddingList" class="save-card flex space-between">
+        <div v-else class="save-card flex space-between">
           <save-btn @save="addList" @close="closeAddList" />
         </div>
       </div>
