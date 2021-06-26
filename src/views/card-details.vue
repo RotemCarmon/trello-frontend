@@ -43,12 +43,13 @@
                 </button>
               </button>
             </section>
+            <!-- MEMBERS -->
             <section
               v-if="card.members && card.members.length"
               class="member-list-container left-gap"
             >
               <h3 class="details-section-header">Members</h3>
-              <div class="member-list flex">
+              <div class="member-list details-section flex">
                 <member-avatar
                   v-for="member in card.members"
                   :key="member._id"
