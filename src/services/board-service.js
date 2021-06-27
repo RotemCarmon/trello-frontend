@@ -224,7 +224,7 @@ const gBoards = [
       {
         _id: 'a101',
         txt: 'Changed Color',
-        createdAt: 1622913547674,
+        createdAt: 1624792727055,
         byMember: {
           _id: 'u101',
           name: 'Rotem Carmon',
@@ -233,7 +233,7 @@ const gBoards = [
         },
         card: {
           _id: 'c101',
-          title: 'Replace Logo'
+          title: 'My card'
         }
       }
     ]
@@ -288,7 +288,12 @@ async function getBoards() {
 }
 
 async function getBoardById(boardId) {
-  return await storageService.get(KEY, boardId)
+  const board = await storageService.get(KEY, boardId)
+  if (!board) {
+    await getBoards()
+    return await storageService.get(KEY, boardId)
+  }
+  return board
 }
 
 async function removeBoard(boardId) {

@@ -41,8 +41,6 @@ import draggable from 'vuedraggable';
 export default {
   name: 'board-details',
   created() {
-    console.log('board page!');
-    console.log(this.$route.params.boardId);
     this.loadBoard();
   },
   data() {
