@@ -1,9 +1,5 @@
 <template>
-  <section
-    v-if="board"
-    class="board-details-container"
-    :style="{ backgroundColor: bgc }"
-  >
+  <section v-if="board" class="board-details-container" :style="bgStyle">
     <board-header @openMenu="toggleMenu" />
     <main class="board-container flex">
       <draggable
@@ -30,6 +26,7 @@
       :activities="board.activities"
       @close="toggleMenu"
       @remove="removeBoard"
+      @setBg="setBg"
     />
     <transition name="fade">
       <router-view />
@@ -57,8 +54,16 @@ export default {
     board() {
       return this.$store.getters.getCurrBoard;
     },
-    bgc() {
-      return this.board.bgc || '#fff';
+    bgStyle() {
+      if (this.board.bgType === 'bgc') {
+        return { backgroundColor: this.board.bgc };
+      } else if (this.board.bgType === 'imgUrl') {
+        const imgUrl = this.board.imgUrl.toString().padStart(2, '0');
+        return {
+          backgroundImage: 'url(' + require(`../assets/img/bg-imgs/original/${imgUrl}.jpg`) + ')',
+        };
+      }
+      // return this.board.bgc || '#fff';
     },
   },
   methods: {
@@ -71,7 +76,7 @@ export default {
     },
     removeBoard() {
       this.$store.dispatch('removeBoard', this.board._id);
-      this.$router.push('/board-list')
+      this.$router.push('/board-list');
     },
     addList(listTitle) {
       console.log('List Title', listTitle);
@@ -79,6 +84,18 @@ export default {
     },
     toggleMenu() {
       this.isMenuOpen = !this.isMenuOpen;
+    },
+    setBg({ content, type }) {
+      this.board[type] = content;
+      this.board.bgType = type;
+      this.updateBoard();
+    },
+    getImage(idx) {
+      idx = idx + '';
+      return require(`../assets/img/bg-imgs/thumbnail/${idx.padStart(
+        2,
+        '0'
+      )}.jpg`);
     },
   },
   watch: {

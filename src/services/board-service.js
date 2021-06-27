@@ -342,6 +342,8 @@ function _getEmptyBoard() {
   return {
     title: 'New Board',
     bgc: '#ffe5e5',
+    imgUrl:'',
+    bgType:'color',
     members: [],
     labels: [],
     activities: [],

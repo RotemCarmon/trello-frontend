@@ -104,3 +104,14 @@
 .hide {
    opacity: 0;
 }
+
+.tile-container {
+    height: 96px;
+    background-size: cover;
+    border-radius: 0.8em;
+    margin-bottom: 6px;
+    cursor: pointer;
+    &:hover {
+      opacity: 0.7;
+    }
+  }

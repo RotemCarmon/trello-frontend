@@ -1,5 +1,8 @@
 .board-details-container {
     position: relative;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
     .board-menu-container {
         height: calc(100vh - 40px);
         transform: translateX(120%);
@@ -13,7 +16,7 @@
             transform: translateX(0);
         }
         background-color: $elem-bgc;
-        padding: 8px 6px;
+        padding: 8px 2px 8px 10px;
 
         .menu-header,
         .board-menu-controllers {
@@ -26,6 +29,9 @@
         }
         .board-menu-sub {
             padding: 6px;
+        }
+        .bg-type-header {
+            text-transform: capitalize;
         }
         .icon {
             margin-inline-end: 8px;
