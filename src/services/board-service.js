@@ -341,8 +341,10 @@ export const boardService = {
 function _getEmptyBoard() {
   return {
     title: 'New Board',
+    bgc: '#ffe5e5',
     members: [],
     labels: [],
+    activities: [],
     lists: [
       {
         _id: 'l101',

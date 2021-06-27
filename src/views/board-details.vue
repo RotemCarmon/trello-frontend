@@ -25,7 +25,12 @@
       </draggable>
       <add-list @add="addList" />
     </main>
-    <board-menu :class="{ 'open-menu': isMenuOpen }" @close="toggleMenu" />
+    <board-menu
+      :class="{ 'open-menu': isMenuOpen }"
+      :activities="board.activities"
+      @close="toggleMenu"
+      @remove="removeBoard"
+    />
     <transition name="fade">
       <router-view />
     </transition>
@@ -63,6 +68,10 @@ export default {
     },
     updateBoard() {
       this.$store.dispatch('updateBoard');
+    },
+    removeBoard() {
+      this.$store.dispatch('removeBoard', this.board._id);
+      this.$router.push('/board-list')
     },
     addList(listTitle) {
       console.log('List Title', listTitle);
