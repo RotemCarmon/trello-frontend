@@ -22,22 +22,26 @@
         margin-top: 48px;
         margin-bottom: 80px;
 
-        // .close-card {
-        //     position: absolute;
-        //     right: 5px;
-        //     top: 5px;
-        // }
+        &.cover-area {
+            padding-top: 80px;
+        }
+        .card-cover {
+            height: 80px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+        }
         .card-title {
             width: 88%;
             h3 {
-                // padding-inline-start: 4px;
                 line-height: 1.5;
                 min-height: 32px;
                 font-weight: 600;
                 font-size: 1.2em;
-                &[contenteditable]:focus {
-                    // TODO: set focus properties
-                }
+                // &[contenteditable]:focus {
+                // TODO: set focus properties
+                // }
             }
             small span {
                 color: $light-text;
@@ -51,7 +55,6 @@
                 margin-inline-end: 10px;
                 .details-section {
                     margin-bottom: 36px;
-                   
                 }
                 .details-section-header {
                     margin-bottom: 5px;

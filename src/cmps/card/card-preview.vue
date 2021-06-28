@@ -31,7 +31,7 @@ export default {
   },
   computed: {
     color() {
-      return { backgroundColor: this.card.color || '#fff' };
+      return { backgroundColor: this.card.bgc || '#fff' };
     },
     labels() {
       const labels = this.$store.getters.getLabels;

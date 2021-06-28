@@ -1,7 +1,8 @@
 <template>
   <section v-if="card" class="card-modal">
     <div @click.self="closeCard" class="modal-screen flex justify-center">
-      <div class="card-details-container">
+      <div class="card-details-container" :class="{'cover-area': card.bgc }">
+      <div class="card-cover" :style="{backgroundColor: card.bgc}"></div>
         <!-- CLOSE BUTTON -->
         <button
           @click="closeCard"

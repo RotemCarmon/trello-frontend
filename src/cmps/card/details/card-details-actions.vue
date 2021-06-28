@@ -57,6 +57,21 @@
           :existingMembers="card.members"
       /></template>
     </details-button>
+    <!-- Background -->
+    <details-button
+      @click.native.self="openMenu('background')"
+      txt="background"
+      icon="paint-roller"
+      prefix="fal"
+      ><template v-slot:menu>
+        <background-menu
+          v-if="currMenu === 'background'"
+          @close="onCloseMenu"
+          @set="setBgc"
+          :bgc="card.bgc"
+        />
+      </template>
+    </details-button>
   </section>
 </template>
 
@@ -66,6 +81,7 @@ import labelMenu from '@/cmps/card/details/menu/label-menu';
 import checkListMenu from '@/cmps/card/details/menu/check-list-menu';
 import dueDateMenu from '@/cmps/card/details/menu/due-date-menu';
 import membersMenu from '@/cmps/card/details/menu/members-menu';
+import backgroundMenu from '@/cmps/card/details/menu/background-menu';
 export default {
   name: 'card-details-actions',
   props: {
@@ -98,10 +114,10 @@ export default {
       if (card.labels.includes(idx)) {
         const _idx = card.labels.findIndex((l) => l === idx);
         if (_idx !== -1) card.labels.splice(_idx, 1);
-        activity = 'Removed label';
+        activity = 'removed label';
       } else {
         card.labels.push(idx);
-        activity = 'Added label';
+        activity = 'added label';
       }
       this.$emit('update', { card, activity });
     },
@@ -115,16 +131,24 @@ export default {
       });
       this.$emit('update', {
         card: this.card,
-        activity: 'Added new checklist',
+        activity: 'added new a checklist',
       });
     },
     setDueDate(date) {
       this.card.dueDate = date;
-      this.$emit('update', { card: this.card, activity: 'Set due date' });
+      this.$emit('update', { card: this.card, activity: 'set due date' });
     },
     updateMembers(members) {
       this.card.members = members;
-      this.$emit('update', { card: this.card, activity: 'Updated members' });
+      this.$emit('update', { card: this.card, activity: 'updated members' });
+    },
+    setBgc(color) {
+      console.log('color:', color)
+      this.card.bgc = color;
+      this.$emit('update', {
+        card: this.card,
+        activity: 'changed background color',
+      });
     },
   },
   components: {
@@ -133,6 +157,7 @@ export default {
     checkListMenu,
     dueDateMenu,
     membersMenu,
+    backgroundMenu,
   },
 };
 </script>
