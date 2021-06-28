@@ -339,8 +339,8 @@ function createActivity({ txt, card, list }) {
     txt,
     createdAt: Date.now(),
     byMember: currMember,
-    card: (card && {_id: card._id, title: card.title}),
-    list: (list && {_id: list._id, title: list.title})
+    card: (card && { _id: card._id, title: card.title }),
+    list: (list && { _id: list._id, title: list.title })
   }
 }
 

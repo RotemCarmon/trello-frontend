@@ -60,15 +60,17 @@ export default {
   methods: {
     getImage(idx) {
       idx = idx + '';
-      return require(`../../assets/img/bg-imgs/thumbnail/${idx.padStart(2,'0')}.jpg`);
+      return require(`../../assets/img/bg-imgs/thumbnail/${idx.padStart(
+        2,
+        '0'
+      )}.jpg`);
     },
     setBgColor(color) {
-      this.$emit('set', {content: color, type:'bgc'})
+      this.$emit('set', { content: color, type: 'bgc' });
     },
     setBgImg(imgUrl) {
-      this.$emit('set', {content: imgUrl, type:'imgUrl'})
-
-    }
+      this.$emit('set', { content: imgUrl, type: 'imgUrl' });
+    },
   },
   created() {},
 };

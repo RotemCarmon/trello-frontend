@@ -21,7 +21,12 @@
     </div>
     <template v-if="isShowBgMenu">
       <board-bg-menu v-if="!bgContentType" @setBgContent="setBgContent" />
-      <background-list v-else :bgType="bgContentType" @set="setBg" @close="closeBgList" />
+      <background-list
+        v-else
+        :bgType="bgContentType"
+        @set="setBg"
+        @close="closeBgList"
+      />
     </template>
     <template v-else>
       <h3 class="board-menu-sub">
@@ -74,11 +79,10 @@ export default {
       console.log('BG Type:', type);
       this.bgContentType = type;
     },
-    setBg({content, type}){
-      console.log('type:', type)
-      console.log('content:', content)
-      this.$emit('setBg', {content, type})
-
+    setBg({ content, type }) {
+      console.log('type:', type);
+      console.log('content:', content);
+      this.$emit('setBg', { content, type });
     },
     toggleBgMenu() {
       this.bgContentType = null;

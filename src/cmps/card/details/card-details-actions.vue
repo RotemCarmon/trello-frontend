@@ -72,6 +72,17 @@
         />
       </template>
     </details-button>
+    <!-- Attechment -->
+    <details-button txt="attechment" icon="paperclip" prefix="fal">
+      <template v-slot:menu>
+        <input
+          type="file"
+          name="attechment"
+          accept="image/*"
+          @change="uploadAttachment"
+        />
+      </template>
+    </details-button>
   </section>
 </template>
 
@@ -82,6 +93,7 @@ import checkListMenu from '@/cmps/card/details/menu/check-list-menu';
 import dueDateMenu from '@/cmps/card/details/menu/due-date-menu';
 import membersMenu from '@/cmps/card/details/menu/members-menu';
 import backgroundMenu from '@/cmps/card/details/menu/background-menu';
+import { uploadImg } from '@/services/img-upload-service.js';
 export default {
   name: 'card-details-actions',
   props: {
@@ -90,6 +102,7 @@ export default {
   data() {
     return {
       currMenu: '',
+      isLoading: false,
     };
   },
   computed: {
@@ -121,6 +134,14 @@ export default {
       }
       this.$emit('update', { card, activity });
     },
+    async uploadAttachment(ev) {
+      this.isLoading = true;
+      const file = ev.target.files[0];
+      const { url: imgUrl } = await uploadImg(file);
+      if (!this.card.attachments) this.card.attachments = [];
+      this.card.attachments.push(imgUrl);
+      this.isLoading = false;
+    },
     addCheckList(title) {
       console.log('Adding ', title);
       console.log('CARD ->>', this.card);
@@ -143,7 +164,7 @@ export default {
       this.$emit('update', { card: this.card, activity: 'updated members' });
     },
     setBgc(color) {
-      console.log('color:', color)
+      console.log('color:', color);
       this.card.bgc = color;
       this.$emit('update', {
         card: this.card,
@@ -161,3 +182,13 @@ export default {
   },
 };
 </script>
+<style lang="scss" scoped>
+input[type='file'] {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  opacity: 0;
+}
+</style>

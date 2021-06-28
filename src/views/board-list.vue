@@ -5,7 +5,8 @@
       class="board-preview"
       v-for="board in boards"
       :key="board._id"
-      >{{ board.title }}</router-link>
+      >{{ board.title }}</router-link
+    >
     <div
       @click="createNewBoard"
       class="create-new-board board-preview flex center-center"
@@ -28,7 +29,7 @@ export default {
   methods: {
     async createNewBoard() {
       const newBoard = await this.$store.dispatch('addBoard');
-      this.$router.push(`board/${newBoard._id}`)
+      this.$router.push(`board/${newBoard._id}`);
     },
   },
 };

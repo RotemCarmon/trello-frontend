@@ -63,6 +63,7 @@ export default {
           backgroundImage: 'url(' + require(`../assets/img/bg-imgs/original/${imgUrl}.jpg`) + ')',
         };
       }
+      return {}
       // return this.board.bgc || '#fff';
     },
   },
