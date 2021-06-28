@@ -1,4 +1,5 @@
 import { makeId } from './util-service';
+import { boardService } from './board-service'
 
 function removeCard({ board, listId, cardId }) {
   const copyBoard = JSON.parse(JSON.stringify(board));
@@ -7,7 +8,10 @@ function removeCard({ board, listId, cardId }) {
   if (cardIdx === -1) {
     throw new Error(`The card ${cardId} was not found`);
   }
-  currList.cards.splice(cardIdx, 1);
+  const [removedCard] = currList.cards.splice(cardIdx, 1);
+  // Activity
+  const activityToAdd = boardService.createActivity({ txt: `deleted a card ${removedCard.title}`, list: currList })
+  copyBoard.activities.unshift(activityToAdd)
   return copyBoard
 }
 
@@ -21,6 +25,9 @@ function addCard({ board, listId, title }) {
     listTitle: currList.title
   }
   currList.cards.push(newCard)
+  // Activity
+  const activityToAdd = boardService.createActivity({ txt: `add a the card ${newCard.title}`, list: currList })
+  copyBoard.activities.unshift(activityToAdd)
   return copyBoard;
 }
 

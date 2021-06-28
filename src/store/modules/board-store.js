@@ -80,6 +80,9 @@ export default {
           boardTitle: currBoard.title
         }
         currBoard.lists.push(newList)
+        // Activity
+        const activityToAdd = boardService.createActivity({ txt: 'added the list ' + listTitle })
+        currBoard.activities.unshift(activityToAdd)
         context.dispatch('updateBoard', currBoard)
       } catch (err) {
         console.log('Coudln\'t add list', err);
@@ -89,7 +92,10 @@ export default {
       const currBoard = context.getters.getCurrBoard;
       const listIdx = currBoard.lists.findIndex(list => list._id === listId);
       if (listIdx === -1) throw new Error(`The list ${listId} was not found`);
-      currBoard.lists.splice(listIdx, 1)
+      const [removedList] = currBoard.lists.splice(listIdx, 1)
+      // Activity
+      const activityToAdd = boardService.createActivity({ txt: 'removed the list ' + removedList.title })
+      currBoard.activities.unshift(activityToAdd)
       context.dispatch('updateBoard', currBoard)
     },
     // updateList(context, list) {
@@ -140,11 +146,8 @@ export default {
         const payload = { card, listId, board: currBoard }
         const modifiedBoard = cardService.updateCard(payload);
         context.commit('setCard', card)
-        const activityToAdd = boardService.createActivity(activity)
-        activityToAdd.card = {
-          _id: card._id,
-          title: card.title
-        }
+        // Activity
+        const activityToAdd = boardService.createActivity({ txt: activity, card })
         modifiedBoard.activities.unshift(activityToAdd)
         // TODO: emit socket 'update-card'
         context.dispatch('updateBoard', modifiedBoard)

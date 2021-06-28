@@ -26,7 +26,7 @@
         chosenClass="chosen"
         dragClass="drag"
         forceFallback="true"
-        @end="moveTask"
+        @end="moveCard"
       >
         <transition-group type="transition" name="flip-list">
           <card-preview
@@ -127,7 +127,7 @@ export default {
     closeActionList() {
       this.isOpenAction = false;
     },
-    moveTask() {
+    moveCard() {
       this.$emit('update');
     },
     setEdit() {

@@ -318,12 +318,29 @@ function getEmptyList(listTitle = '') {
   }
 }
 
-function createActivity(txt) {
+// activityToAdd.card = {
+//   _id: card._id,
+//   title: card.title
+// }
+
+function createActivity({ txt, card, list }) {
+  // const miniCard = card ? {
+  //   _id: card._id,
+  //   title: card.title
+  // } : null
+
+  // const miniList = list ? {
+  //   _id: list._id,
+  //   title: list.title
+  // } : null
+
   return {
     _id: 'a' + makeId(),
     txt,
     createdAt: Date.now(),
     byMember: currMember,
+    card: (card && {_id: card._id, title: card.title}),
+    list: (list && {_id: list._id, title: list.title})
   }
 }
 
@@ -342,8 +359,8 @@ function _getEmptyBoard() {
   return {
     title: 'New Board',
     bgc: '#ffe5e5',
-    imgUrl:'',
-    bgType:'color',
+    imgUrl: '',
+    bgType: 'color',
     members: [],
     labels: [],
     activities: [],

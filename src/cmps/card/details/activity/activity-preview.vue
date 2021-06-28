@@ -7,10 +7,17 @@
           {{ activity.byMember.name }}
         </strong>
         <span>{{ activity.txt }}</span>
+
         <span v-if="activity.card">
           in card
           <span class="card-name">
             {{ activity.card.title }}
+          </span>
+        </span>
+        <span v-if="activity.list">
+          in list
+          <span class="list-name">
+            {{ activity.list.title }}
           </span>
         </span>
       </div>
@@ -35,7 +42,7 @@ export default {
   },
   components: {
     memberAvatar,
-  }
+  },
 };
 </script>
 
@@ -52,7 +59,8 @@ export default {
     align-self: start;
   }
 
-  .card-name {
+  .card-name,
+  .list-name {
     text-decoration: underline;
   }
   .createdAt {
