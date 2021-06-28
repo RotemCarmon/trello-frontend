@@ -73,14 +73,15 @@
       </template>
     </details-button>
     <!-- Attechment -->
-    <details-button txt="attechment" icon="paperclip" prefix="fal">
+    <details-button txt="attachment" icon="paperclip" prefix="fal">
       <template v-slot:menu>
         <input
           type="file"
-          name="attechment"
+          name="attachment"
           accept="image/*"
           @change="uploadAttachment"
         />
+        <div v-if="isLoading" class="loader">Loading...</div>
       </template>
     </details-button>
   </section>
@@ -94,6 +95,7 @@ import dueDateMenu from '@/cmps/card/details/menu/due-date-menu';
 import membersMenu from '@/cmps/card/details/menu/members-menu';
 import backgroundMenu from '@/cmps/card/details/menu/background-menu';
 import { uploadImg } from '@/services/img-upload-service.js';
+import { createAttachment } from '@/services/util-service.js';
 export default {
   name: 'card-details-actions',
   props: {
@@ -135,16 +137,19 @@ export default {
       this.$emit('update', { card, activity });
     },
     async uploadAttachment(ev) {
-      this.isLoading = true;
+      this.isLoading = true; // start loader
       const file = ev.target.files[0];
       const { url: imgUrl } = await uploadImg(file);
       if (!this.card.attachments) this.card.attachments = [];
-      this.card.attachments.push(imgUrl);
-      this.isLoading = false;
+      const attch = createAttachment(imgUrl, file.name);
+      this.card.attachments.push(attch);
+      this.$emit('update', {
+        card: this.card,
+        activity: 'added an attachment',
+      });
+      this.isLoading = false; // stop loader
     },
     addCheckList(title) {
-      console.log('Adding ', title);
-      console.log('CARD ->>', this.card);
       if (!this.card.checkLists) this.card.checkLists = [];
       this.card.checkLists.push({
         title,
@@ -164,7 +169,6 @@ export default {
       this.$emit('update', { card: this.card, activity: 'updated members' });
     },
     setBgc(color) {
-      console.log('color:', color);
       this.card.bgc = color;
       this.$emit('update', {
         card: this.card,
@@ -190,5 +194,12 @@ input[type='file'] {
   top: 0;
   bottom: 0;
   opacity: 0;
+}
+.loader {
+  position: absolute;
+  right: calc(100% + 20px);
+  padding: 6px 12px;
+  background-color: #e7e7e7c2;
+  box-shadow: 0 0 4px 0px #00000034;
 }
 </style>

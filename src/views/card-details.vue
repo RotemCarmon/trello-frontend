@@ -1,8 +1,8 @@
 <template>
   <section v-if="card" class="card-modal">
     <div @click.self="closeCard" class="modal-screen flex justify-center">
-      <div class="card-details-container" :class="{'cover-area': card.bgc }">
-      <div class="card-cover" :style="{backgroundColor: card.bgc}"></div>
+      <div class="card-details-container" :class="{ 'cover-area': card.bgc }">
+        <div class="card-cover" :style="{ backgroundColor: card.bgc }"></div>
         <!-- CLOSE BUTTON -->
         <button
           @click="closeCard"
@@ -63,6 +63,28 @@
               @save="updateDesc"
               :description="card.description"
             />
+            <!-- ATTACHMENT -->
+            <section v-if="card.attachments && card.attachments.length" class="details-section-attachments left-gap">
+              <h3 class="details-section-header">Attachments</h3>
+              <div class="attachment-list flex wrap">
+                <div
+                  v-for="attch in this.card.attachments"
+                  :key="attch._id"
+                  class="attachment-preview"
+                >
+                  <div class="img-container">
+                    <img :src="attch.imgUrl" />
+                  </div>
+                  <div class="attachment-remove">
+                    <font-awesome-icon
+                      size="2x"
+                      :icon="['fal', 'trash-alt']"
+                      @click="removeAttachment(attch)"
+                    />
+                  </div>
+                </div>
+              </div>
+            </section>
             <!-- CHECK LIST -->
             <check-main @update="updateCard" :checkLists="card.checkLists" />
             <!-- ACTIVITIES -->
@@ -159,11 +181,23 @@ export default {
       console.log('Title Edit', ev.target.innerText);
       const txt = ev.target.innerText;
       this.card.title = txt;
-      this.updateCard({ activity: 'Updated title' });
+      this.updateCard({ activity: 'updated title' });
     },
     removeDueDate() {
       this.card.dueDate = null;
-      this.updateCard({ activity: 'Removed Due date' });
+      this.updateCard({ activity: 'removed Due date' });
+    },
+    removeAttachment(attachment) {
+      const { attachments } = this.card;
+      const idx = attachments.findIndex(
+        (attch) => attch._id === attachment._id
+      );
+      if (idx === -1) {
+        console.log('Attachment dont exist!');
+        return;
+      }
+      attachments.splice(idx, 1);
+      this.updateCard({ activity: 'removed attachment' });
     },
   },
   components: {
