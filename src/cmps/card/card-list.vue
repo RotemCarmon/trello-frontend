@@ -26,13 +26,14 @@
         chosenClass="chosen"
         dragClass="drag"
         forceFallback="true"
-        @end="moveCard"
+        @end="moveCard($event, list)"
       >
         <transition-group type="transition" name="flip-list">
           <card-preview
             v-for="card in list.cards"
             :card="card"
             :key="card._id"
+            :data-id="card._id"
             @open="openCard"
             @removeCard="removeCard"
           />
@@ -127,7 +128,15 @@ export default {
     closeActionList() {
       this.isOpenAction = false;
     },
-    moveCard() {
+    moveCard(e, from) {
+      if (e.pullMode) {
+        const cardId = e.item.dataset.id;
+        const fromTitle = from.title;
+        const toListId = e.to.offsetParent.dataset.id;
+        const payload = { cardId, fromTitle, toListId };
+        this.$emit('moveCard', payload);
+        return;
+      }
       this.$emit('update');
     },
     setEdit() {

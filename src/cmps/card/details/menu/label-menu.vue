@@ -37,7 +37,7 @@ export default {
     updateLabels() {
       const board = this.$store.getters.getCurrBoard;
       board.labels = this.labels;
-      this.$store.dispatch('updateBoard', board);
+      this.$store.dispatch('updateBoard');
     },
   },
   components: {

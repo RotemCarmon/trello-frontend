@@ -81,7 +81,7 @@ export default {
         }
         currBoard.lists.push(newList)
         // Activity
-        const activityToAdd = boardService.createActivity({ txt: 'added the list ' + listTitle })
+        const activityToAdd = boardService.createActivity({ txt: 'added the list ' + listTitle, type: 'list' })
         currBoard.activities.unshift(activityToAdd)
         context.dispatch('updateBoard', currBoard)
       } catch (err) {
@@ -94,21 +94,10 @@ export default {
       if (listIdx === -1) throw new Error(`The list ${listId} was not found`);
       const [removedList] = currBoard.lists.splice(listIdx, 1)
       // Activity
-      const activityToAdd = boardService.createActivity({ txt: 'removed the list ' + removedList.title })
+      const activityToAdd = boardService.createActivity({ txt: 'removed the list ' + removedList.title, type: 'list' })
       currBoard.activities.unshift(activityToAdd)
       context.dispatch('updateBoard', currBoard)
     },
-    // updateList(context, list) {
-    //   try {
-    //     const currBoard = context.getters.getCurrBoard;
-    //     const oldListIdx = currBoard.lists.findIndex(l => l._id === list._id)
-    //     if (oldListIdx === -1) throw new Error(`The list ${list._id} was not found`);
-    //     currBoard.lists.splice(oldListIdx, 1, list)
-    //     context.dispatch('updateBoard', currBoard)
-    //   } catch (err) {
-    //     console.log('Coudln\'t update list', err);
-    //   }
-    // },
     // CARD
     getCard(context, { listId, cardId }) {
       try {
@@ -153,6 +142,21 @@ export default {
         context.dispatch('updateBoard', modifiedBoard)
       } catch (err) {
         console.log('Coudln\'t update card', err);
+      }
+    },
+    moveCard(context, { cardId, fromTitle, toListId }) {
+      console.log('context:', context)
+      try {
+        const currBoard = context.getters.getCurrBoard;
+        const cardTitle = cardService.getCardById({ board: currBoard, cardId })?.title;
+        const toTitle = context.getters.getCurrList(toListId)?.title
+        const activity = `moved card ${cardTitle} from ${fromTitle} to ${toTitle}`;
+        // Activity
+        const activityToAdd = boardService.createActivity({ txt: activity, type: 'move' })
+        currBoard.activities.unshift(activityToAdd)
+        context.dispatch('updateBoard', currBoard)
+      } catch (err) {
+        console.log('Coudln\'t set activity', err);
       }
     }
   }

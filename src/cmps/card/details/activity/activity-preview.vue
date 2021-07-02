@@ -8,13 +8,13 @@
         </strong>
         <span>{{ activity.txt }}</span>
 
-        <span v-if="activity.card">
+        <span v-if="activity.type === 'card' && activity.card">
           in card
           <span class="card-name">
             {{ activity.card.title }}
           </span>
         </span>
-        <span v-if="activity.list">
+        <span v-if="activity.type === 'list' && activity.list">
           in list
           <span class="list-name">
             {{ activity.list.title }}

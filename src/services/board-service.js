@@ -291,7 +291,7 @@ async function getBoardById(boardId) {
   const board = await storageService.get(KEY, boardId)
   if (!board) {
     await getBoards()
-    return await storageService.get(KEY, boardId)
+    return await storageService.get(KEY, boardId) || null
   }
   return board
 }
@@ -323,24 +323,15 @@ function getEmptyList(listTitle = '') {
 //   title: card.title
 // }
 
-function createActivity({ txt, card, list }) {
-  // const miniCard = card ? {
-  //   _id: card._id,
-  //   title: card.title
-  // } : null
-
-  // const miniList = list ? {
-  //   _id: list._id,
-  //   title: list.title
-  // } : null
-
+function createActivity({ txt, card, list, type = 'card' }) {
   return {
     _id: 'a' + makeId(),
     txt,
     createdAt: Date.now(),
     byMember: currMember,
     card: (card && { _id: card._id, title: card.title }),
-    list: (list && { _id: list._id, title: list.title })
+    list: (list && { _id: list._id, title: list.title }),
+    type
   }
 }
 

@@ -15,8 +15,10 @@
         <card-list
           v-for="list in board.lists"
           :list="list"
+          :data-id="list._id"
           :key="list._id"
           @update="updateBoard"
+          @moveCard="moveCard"
         />
       </draggable>
       <add-list @add="addList" />
@@ -60,10 +62,13 @@ export default {
       } else if (this.board.bgType === 'imgUrl') {
         const imgUrl = this.board.imgUrl.toString().padStart(2, '0');
         return {
-          backgroundImage: 'url(' + require(`../assets/img/bg-imgs/original/${imgUrl}.jpg`) + ')',
+          backgroundImage:
+            'url(' +
+            require(`../assets/img/bg-imgs/original/${imgUrl}.jpg`) +
+            ')',
         };
       }
-      return {}
+      return {};
       // return this.board.bgc || '#fff';
     },
   },
@@ -97,6 +102,9 @@ export default {
         2,
         '0'
       )}.jpg`);
+    },
+    moveCard(payload) {
+      this.$store.dispatch('moveCard', payload);
     },
   },
   watch: {

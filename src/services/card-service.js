@@ -26,7 +26,7 @@ function addCard({ board, listId, title }) {
   }
   currList.cards.push(newCard)
   // Activity
-  const activityToAdd = boardService.createActivity({ txt: `add a the card ${newCard.title}`, list: currList })
+  const activityToAdd = boardService.createActivity({ txt: `add the card ${newCard.title}`, list: currList, type: 'list' })
   copyBoard.activities.unshift(activityToAdd)
   return copyBoard;
 }
@@ -42,11 +42,21 @@ function updateCard({ board, listId, card }) {
   return copyBoard
 }
 
+function getCardById({ board, cardId }) {
+  let card = null
+  board.lists.forEach(list => {
+    const currCard = list.cards.find(card => card._id === cardId)
+    if (currCard) card = currCard
+  })
+  return card
+}
+
 export const cardService = {
   removeCard,
   addCard,
   updateCard,
-  getEmptyTodo
+  getEmptyTodo,
+  getCardById
 }
 
 function _getEmptyCard() {

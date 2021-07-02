@@ -25,7 +25,7 @@
             <!-- LABELS -->
             <section
               v-if="activeLabels && activeLabels.length"
-              class="details-section-labels left-gap"
+              class="details-section-labels details-section left-gap"
             >
               <h3 class="details-section-header">Labels</h3>
               <label-list :labels="activeLabels" />

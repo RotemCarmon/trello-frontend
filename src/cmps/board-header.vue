@@ -95,7 +95,7 @@ export default {
     updateMembers(members) {
       console.log('members', members);
       this.board.members = members;
-      this.$store.dispatch('updateBoard', this.board);
+      this.$store.dispatch('updateBoard');
     },
     openBoardMenu() {
       this.$emit('openMenu')
