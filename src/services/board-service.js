@@ -334,6 +334,15 @@ function createActivity({ txt, card, list, type = 'card' }) {
     type
   }
 }
+function createComment({ txt, cardId }) {
+  return {
+    _id: 'cmt' + makeId(),
+    txt,
+    createdAt: Date.now(),
+    byMember: currMember,
+    cardId
+  }
+}
 
 export const boardService = {
   getBoards,
@@ -343,7 +352,8 @@ export const boardService = {
   updateBoard,
   getEmptyList,
   getMemebers,
-  createActivity
+  createActivity,
+  createComment
 }
 
 function _getEmptyBoard() {

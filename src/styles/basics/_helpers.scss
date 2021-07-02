@@ -119,3 +119,14 @@
       opacity: 0.7;
     }
   }
+
+  .inline {
+      display: inline-block;
+  }
+
+  .pointer {
+      cursor: pointer;
+  }
+  .selected {
+      color: #5ba4cf;
+  }

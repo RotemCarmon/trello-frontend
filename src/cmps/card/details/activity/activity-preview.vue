@@ -31,6 +31,7 @@ import memberAvatar from '../../../common/member-avatar';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 export default {
+  name: 'activity-preview',
   props: {
     activity: Object,
   },

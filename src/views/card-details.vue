@@ -64,7 +64,10 @@
               :description="card.description"
             />
             <!-- ATTACHMENT -->
-            <section v-if="card.attachments && card.attachments.length" class="details-section-attachments left-gap">
+            <section
+              v-if="card.attachments && card.attachments.length"
+              class="details-section-attachments left-gap"
+            >
               <h3 class="details-section-header">Attachments</h3>
               <div class="attachment-list flex wrap">
                 <div
@@ -90,9 +93,32 @@
             <!-- ACTIVITIES -->
             <!-- TODO: split to component -->
             <section class="details-section details-section-activity">
-              <h3 class="details-section-header left-gap">Activity</h3>
-              <activity-add />
-              <activity-list :activities="activities" />
+              <h3
+                class="details-section-header inline pointer left-gap"
+                :class="{selected: listToShow === 'activities'}"
+                @click="setList('activities')"
+              >
+                Activity
+              </h3>
+              |
+              <h3
+                class="details-section-header inline pointer"
+                :class="{selected: listToShow === 'comments'}"
+                @click="setList('comments')"
+              >
+                Comments
+              </h3>
+              <template v-if="listToShow === 'activities'">
+                <activity-list :activities="activities" />
+              </template>
+              <template v-else>
+                <comment-add class="left-gap" @save="addComment" />
+                <comment-list
+                  @save="editComment"
+                  @remove="removeComment"
+                  :comments="comments"
+                />
+              </template>
             </section>
           </section>
           <!-- ACTIONS -->
@@ -106,13 +132,15 @@
 
 <script>
 import activityList from '../cmps/card/details/activity/activity-list';
-import activityAdd from '../cmps/card/details/activity/activity-add';
+import commentList from '../cmps/card/details/comment-list';
+import commentAdd from '../cmps/card/details/comment-add';
 import cardDescription from '../cmps/card/details/card-description';
 import labelList from '../cmps/card/details/label-list';
 import cardDetailsActions from '../cmps/card/details/card-details-actions';
 import checkMain from '../cmps/card/details/check-list/check-main';
 import memberAvatar from '../cmps/common/member-avatar';
 import dateFormat from 'dateformat';
+import { boardService } from '../services/board-service';
 
 export default {
   name: 'card-details',
@@ -122,6 +150,7 @@ export default {
   data() {
     return {
       listId: null,
+      listToShow: 'activities',
     };
   },
   computed: {
@@ -150,6 +179,9 @@ export default {
       return activits.filter(
         (activity) => activity?.card?._id === this.card._id
       );
+    },
+    comments() {
+      return this.card?.comments;
     },
   },
   methods: {
@@ -199,6 +231,40 @@ export default {
       attachments.splice(idx, 1);
       this.updateCard({ activity: 'removed attachment' });
     },
+    addComment(txt) {
+      const comment = boardService.createComment({
+        txt,
+        cardId: this.card._id,
+      });
+      if (!this.card.comments) this.card.comments = [];
+      this.card.comments.unshift(comment);
+      this.updateCard({ card: this.card });
+    },
+    removeComment(commentId) {
+      const commentIdx = this.card.comments.findIndex(
+        (comment) => comment._id === commentId
+      );
+      if (commentIdx === -1) {
+        console.log("Can't remove Comment");
+        return;
+      }
+      this.card.comments.splice(commentIdx, 1);
+      this.updateCard({ card: this.card });
+    },
+    editComment(comment) {
+      const commentIdx = this.card.comments.findIndex(
+        (c) => c._id === comment._id
+      );
+      if (commentIdx === -1) {
+        console.log("Can't edit Comment");
+        return;
+      }
+      this.card.comments.splice(commentIdx, 1, comment);
+      this.updateCard({ card: this.card });
+    },
+    setList(listName) {
+      this.listToShow = listName;
+    },
   },
   components: {
     activityList,
@@ -207,7 +273,8 @@ export default {
     cardDetailsActions,
     checkMain,
     memberAvatar,
-    activityAdd,
+    commentAdd,
+    commentList,
   },
 };
 </script>

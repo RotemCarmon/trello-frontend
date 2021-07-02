@@ -136,8 +136,10 @@ export default {
         const modifiedBoard = cardService.updateCard(payload);
         context.commit('setCard', card)
         // Activity
-        const activityToAdd = boardService.createActivity({ txt: activity, card })
-        modifiedBoard.activities.unshift(activityToAdd)
+        if (activity) {
+          const activityToAdd = boardService.createActivity({ txt: activity, card })
+          modifiedBoard.activities.unshift(activityToAdd)
+        }
         // TODO: emit socket 'update-card'
         context.dispatch('updateBoard', modifiedBoard)
       } catch (err) {
@@ -158,6 +160,6 @@ export default {
       } catch (err) {
         console.log('Coudln\'t set activity', err);
       }
-    }
-  }
+    },
+  },
 };
