@@ -1,14 +1,14 @@
 <template>
   <main class="main-app">
-    <header-cmp />
+    <main-header />
     <router-view />
   </main>
 </template>
 <script>
-import headerCmp from './cmps/common/header-cmp';
+import mainHeader from './cmps/common/main-header';
 export default {
   components: {
-    headerCmp,
+    mainHeader,
   },
 };
 </script>
