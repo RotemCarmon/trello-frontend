@@ -22,9 +22,9 @@
             <ul class="board-menu clean-list flex column">
               <router-link
                 :to="`/board/${board._id}`"
-                class="board-preview"
                 v-for="board in boards"
                 :key="board._id"
+                class="board-menu-preview"
                 @click.native="toggleMenu"
                 >{{ board.title }}</router-link
               >

@@ -1,0 +1,33 @@
+.borad-list-container {
+  padding: 8px;
+}
+
+.board-preview {
+  position: relative;
+  padding: 16px;
+  width: 220px;
+  height: 140px;
+  margin: 8px;
+  font-weight: 700;
+  font-size: 1.2em;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: white;
+  box-shadow: 0 0 3px gray;
+  cursor: pointer;
+  &:hover::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: #00000013;
+  }
+  span {
+    padding: 6px;
+    background-color: #7a7a7a70;
+  }
+}
+.create-new-board {
+  font-size: 1.5em;
+  line-height: 1;
+  font-weight: 600;
+}

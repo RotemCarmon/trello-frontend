@@ -5,19 +5,24 @@
       class="board-preview"
       v-for="board in boards"
       :key="board._id"
-      >{{ board.title }}</router-link
+      :style="getBgStyle(board)"
     >
+      <span>
+        {{ board.title }}
+      </span>
+    </router-link>
     <div
       @click="createNewBoard"
       class="create-new-board board-preview flex center-center"
     >
-      +
+      <font-awesome-icon :icon="['fal', 'plus']" size="2x" />
     </div>
   </section>
 </template>
 
 <script>
 export default {
+  name: 'board-list',
   data() {
     return {
       boards: [],
@@ -26,30 +31,26 @@ export default {
   async created() {
     this.boards = await this.$store.dispatch('getBoards');
   },
+  computed: {},
   methods: {
     async createNewBoard() {
       const newBoard = await this.$store.dispatch('addBoard');
       this.$router.push(`board/${newBoard._id}`);
     },
+    getBgStyle(board) {
+      if (!board) return { backgroundColor: '#e3a1ff' };
+      if (board.bgType === 'imgUrl') {
+        const imgUrl = board.imgUrl.toString().padStart(2, '0');
+        return {
+          backgroundImage:
+            'url(' +
+            require(`../assets/img/bg-imgs/original/${imgUrl}.jpg`) +
+            ')',
+        };
+      } else {
+        return { backgroundColor: board.bgc };
+      }
+    },
   },
 };
 </script>
-<style lang="scss" scoped>
-.borad-list-container {
-  padding: 8px;
-}
-.board-preview {
-  cursor: pointer;
-  padding: 16px;
-  box-shadow: 0 0 3px gray;
-  &:hover {
-    background-color: rgba(65, 65, 65, 0.109);
-  }
-  margin: 8px;
-}
-.create-new-board {
-  font-size: 1.5em;
-  line-height: 1;
-  font-weight: 600;
-}
-</style>
