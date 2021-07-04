@@ -107,6 +107,9 @@ export default {
       this.$store.dispatch('moveCard', payload);
     },
   },
+  destroyed() {
+    this.$store.commit('setBoard', null);
+  },
   watch: {
     '$route.params.boardId'() {
       this.loadBoard();

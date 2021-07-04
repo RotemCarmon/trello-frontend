@@ -1,6 +1,6 @@
 <template>
   <header class="header-container header-grid-container">
-    <div class="btn-header sqare-btn">
+    <div class="btn-header sqare-btn" @click="goHome">
       <font-awesome-icon icon="home" />
     </div>
     <div class="logo">Collo</div>
@@ -15,5 +15,12 @@
 </template>
 
 <script>
-export default {};
+export default {
+  name: 'main-header',
+  methods: {
+    goHome() {
+      this.$router.push('/')
+    }
+  }
+};
 </script>
