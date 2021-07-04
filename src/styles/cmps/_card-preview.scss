@@ -19,6 +19,24 @@
             background-color: darken($elem-bgc, 5%);
         }
     }
+    .card-preview-symbols {
+        font-size: 0.75em;
+        padding: 4px;
+        padding-inline-start: 0;
+        
+        .symbol {
+            margin-inline-end: 0.7em;
+            padding: 2px;
+            padding-inline-start: 0;
+        }
+        .symbol-icon {
+            margin-inline-end: 2px;
+        }
+        .due-date-badge {
+            border-radius: 2px;
+            padding-inline: 6px;
+        }
+    }
 }
 
 .card-preview {
