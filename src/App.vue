@@ -1,5 +1,5 @@
 <template>
-  <main class="main-app" :style="bgStyle">
+  <main class="main-app main-app-container" :style="bgStyle">
     <main-header />
     <router-view />
   </main>
