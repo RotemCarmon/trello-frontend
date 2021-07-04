@@ -1,5 +1,5 @@
 <template>
-  <section v-if="board" class="board-details-container" :style="bgStyle">
+  <section v-if="board" class="board-details-container">
     <board-header @openMenu="toggleMenu" />
     <main class="board-container flex">
       <draggable
@@ -56,21 +56,21 @@ export default {
     board() {
       return this.$store.getters.getCurrBoard;
     },
-    bgStyle() {
-      if (this.board.bgType === 'bgc') {
-        return { backgroundColor: this.board.bgc };
-      } else if (this.board.bgType === 'imgUrl') {
-        const imgUrl = this.board.imgUrl.toString().padStart(2, '0');
-        return {
-          backgroundImage:
-            'url(' +
-            require(`../assets/img/bg-imgs/original/${imgUrl}.jpg`) +
-            ')',
-        };
-      }
-      return {};
-      // return this.board.bgc || '#fff';
-    },
+    // bgStyle() {
+    //   if (this.board.bgType === 'bgc') {
+    //     return { backgroundColor: this.board.bgc };
+    //   } else if (this.board.bgType === 'imgUrl') {
+    //     const imgUrl = this.board.imgUrl.toString().padStart(2, '0');
+    //     return {
+    //       backgroundImage:
+    //         'url(' +
+    //         require(`../assets/img/bg-imgs/original/${imgUrl}.jpg`) +
+    //         ')',
+    //     };
+    //   }
+    //   return {};
+    //   // return this.board.bgc || '#fff';
+    // },
   },
   methods: {
     loadBoard() {
