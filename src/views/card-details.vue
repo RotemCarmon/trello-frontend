@@ -33,16 +33,20 @@
             <!--  DUE DATE -->
             <section
               v-if="dueDate"
-              class="details-section detail-section-due-date left-gap"
+              class="details-section detail-section-due-date"
             >
-              <h3 class="details-section-header">Due Date</h3>
-              <button class="details-btn due-date-btn">
-                {{ dueDate }}
-
-                <button class="remove-btn hide" @click="removeDueDate">
-                  <font-awesome-icon :icon="['fal', 'times']" />
+              <h3 class="details-section-header left-gap">Due Date</h3>
+              <div class="due-date-btn flex align-center">
+                <input
+                  type="checkbox"
+                  class="card-check-box"
+                  @change="toggleCardDone"
+                  v-model="isCardDone"
+                />
+                <button class="details-btn" :class="{ done: card.isDone }">
+                  {{ dueDate }}
                 </button>
-              </button>
+              </div>
             </section>
             <!-- MEMBERS -->
             <section
@@ -95,7 +99,7 @@
             <section class="details-section details-section-activity">
               <h3
                 class="details-section-header inline pointer left-gap"
-                :class="{selected: listToShow === 'activities'}"
+                :class="{ selected: listToShow === 'activities' }"
                 @click="setList('activities')"
               >
                 Activity
@@ -103,7 +107,7 @@
               |
               <h3
                 class="details-section-header inline pointer"
-                :class="{selected: listToShow === 'comments'}"
+                :class="{ selected: listToShow === 'comments' }"
                 @click="setList('comments')"
               >
                 Comments
@@ -146,11 +150,13 @@ export default {
   name: 'card-details',
   created() {
     this.loadCard();
+    this.isCardDone = this.card?.isDone;
   },
   data() {
     return {
       listId: null,
       listToShow: 'activities',
+      isCardDone: false,
     };
   },
   computed: {
@@ -264,6 +270,10 @@ export default {
     },
     setList(listName) {
       this.listToShow = listName;
+    },
+    toggleCardDone() {
+      this.card.isDone = this.isCardDone;
+      this.updateCard({ card: this.card });
     },
   },
   components: {

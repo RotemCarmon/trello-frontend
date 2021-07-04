@@ -14,6 +14,7 @@
     <div
       @click="createNewBoard"
       class="create-new-board board-preview flex center-center"
+      title="Start a new board"
     >
       <font-awesome-icon :icon="['fal', 'plus']" size="2x" />
     </div>

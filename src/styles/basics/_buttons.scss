@@ -32,7 +32,7 @@
     cursor: pointer;
     transition: background-color 0.4s;
     &:hover {
-        background-color: rgba(65, 65, 65, 0.109);
+        background-color: rgba(65, 65, 65, 0.13);
     }
 }
 
@@ -53,8 +53,8 @@
 }
 .open-add-list-btn {
     padding: 8px;
-    // width: calc(100% - 16px);
-    width: 272px;
+    width: calc(100% - 16px);
+    color: white;
 }
 .save-card {
     padding: 8px;
@@ -82,20 +82,25 @@
     }
 }
 
-.due-date-btn {
+.due-date-btn button{
     position: relative;
-}
-
-.due-date-btn:hover {
-    color: rgba($color: $text, $alpha: 0.1);
-    transition: color 0.4s;
-    transition: opacity 0.4s;
-    & .hide {
-        opacity: 1;
-        transform: rotate(90deg) scale(1.2);
-        transition: transform 0.4s;
+    margin-inline-start: 40px;
+    &.done {
+        background-color: #61BD4F;
+        color: white;
     }
 }
+
+// .due-date-btn:hover {
+//     color: rgba($color: $text, $alpha: 0.1);
+//     transition: color 0.4s;
+//     transition: opacity 0.4s;
+//     & .hide {
+//         opacity: 1;
+//         transform: rotate(90deg) scale(1.2);
+//         transition: transform 0.4s;
+//     }
+// }
 
 .remove-btn {
     color: rgba($color: $text, $alpha: 1);
@@ -110,6 +115,6 @@
     cursor: pointer;
 }
 .secondary-btn {
-    font-size: .7em;
+    font-size: 0.7em;
     text-decoration: underline;
 }

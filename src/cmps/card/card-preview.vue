@@ -76,6 +76,9 @@ export default {
       return dayjs(this.card.dueDate).format('MMM DD');
     },
     dueDateStyle() {
+      if (this.card.isDone) {
+        return { backgroundColor: '#61BD4F', color: 'white' };
+      }
       const dueDateTimestamp = new Date(this.card.dueDate).getTime();
       if (Date.now() > dueDateTimestamp) {
         return { backgroundColor: '#ec9488', color: 'white' };

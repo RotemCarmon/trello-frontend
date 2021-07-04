@@ -8,7 +8,7 @@
       type="checkbox"
       v-model="todo.isDone"
       @change="updateTodo(`Set todo as ${todo.isDone? 'done':'undone'}`)"
-      class="check-box"
+      class="card-check-box"
     />
     <div class="todo-preview">
       <add-item
@@ -73,11 +73,6 @@ export default {
   .todo-preview {
     position: relative;
     padding: 8px 0 8px 40px;
-  }
-  .check-box {
-    position: absolute;
-    z-index: 10;
-    cursor: pointer;
   }
   .remove-todo {
     display: none;

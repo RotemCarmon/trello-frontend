@@ -33,6 +33,7 @@ export default {
   span {
     font-size: 11px;
     position: absolute;
+    left: 21px;
   }
   .progress-bar {
     width: 100%;
