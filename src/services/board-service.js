@@ -85,6 +85,8 @@ const gBoards = [
     _id: 'b101',
     title: 'My board',
     bgc: '#87a3ff',
+    imgUrl: '',
+    bgType: 'bgc',
     labels: [
       { color: '#61bd4f', txt: '', isActive: true },
       { color: '#f2d600', txt: '', isActive: false },
@@ -241,6 +243,9 @@ const gBoards = [
   {
     _id: 'b102',
     title: 'Second Board',
+    bgc: '#4bbf6b',
+    imgUrl: '',
+    bgType: 'bgc',
     labels: [
       { color: '#61bd4f', txt: 'UI', isActive: true },
       { color: '#f2d600', txt: '', isActive: false },
