@@ -63,12 +63,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.member-preview {
-  background-color: #60606004;
-  padding: 2px;
-  &:hover {
-    background-color: #6060601a;
-    cursor: pointer;
-  }
+.memeber-list .member-avatar {
+  margin-inline-end: 8px;
 }
 </style>

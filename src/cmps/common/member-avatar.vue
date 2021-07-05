@@ -30,8 +30,8 @@ export default {
 
 <style lang="scss" scoped>
 .member-avatar {
-  height: 35px;
-  width: 35px;
+  height: 30px;
+  width: 30px;
   border-radius: 50%;
   color: #5d5d5d;
   background-color: #dadadb;

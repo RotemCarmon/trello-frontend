@@ -36,7 +36,9 @@
         <span>{{ doneTodos }}</span>
       </div>
     </div>
-    <div class="card-preview-members"></div>
+    <div class="card-preview-members flex justify-end" v-if="card.members && card.members.length">
+      <member-avatar v-for="member in card.members" :member="member" :key="member._id" />
+    </div>
     <font-awesome-icon
       @click="removeCard"
       class="remove-card-preview"
@@ -49,6 +51,7 @@
 <script>
 import labelList from './details/label-list';
 import dayjs from 'dayjs';
+import memberAvatar from '../common/member-avatar';
 export default {
   name: 'card-preview',
   props: {
@@ -103,6 +106,7 @@ export default {
   },
   components: {
     labelList,
+    memberAvatar
   },
 };
 </script>
