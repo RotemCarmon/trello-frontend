@@ -1,6 +1,6 @@
 <template>
   <section class="card-controllers-container flex column">
-    <h3 class="details-section-header">Actions</h3>
+    <h3 class="details-section-header add-to-card-header">Add to card</h3>
     <!-- Label -->
     <details-button
       @click.native.self="openMenu('label')"
@@ -187,6 +187,10 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.add-to-card-header{
+  text-transform: uppercase;
+  font-size: .8em;
+}
 input[type='file'] {
   position: absolute;
   left: 0;
