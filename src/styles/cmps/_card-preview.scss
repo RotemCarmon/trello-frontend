@@ -47,14 +47,14 @@
 .remove-card-preview {
     position: absolute;
     right: 8px;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 8px;
+    // transform: translateY(-50%);
     color: transparent;
     transition: color 0.4s;
 }
 
 .card-preview-container:hover > .remove-card-preview {
-    color: #b5b5b575;
+    color: #464646d9;
 }
 
 .card-preview-members {

@@ -4,7 +4,10 @@
     <div class="card-preview">
       {{ card.title }}
     </div>
-    <div class="card-preview-symbols flex wrap">
+    <div
+      ref="symbols"
+      class="card-preview-symbols flex wrap"
+    >
       <div
         v-if="dueDate"
         class="due-date due-date-badge symbol"
@@ -36,14 +39,20 @@
         <span>{{ doneTodos }}</span>
       </div>
     </div>
-    <div class="card-preview-members flex justify-end" v-if="card.members && card.members.length">
-      <member-avatar v-for="member in card.members" :member="member" :key="member._id" />
+    <div
+      class="card-preview-members flex justify-end"
+      v-if="card.members && card.members.length"
+    >
+      <member-avatar
+        v-for="member in card.members"
+        :member="member"
+        :key="member._id"
+      />
     </div>
     <font-awesome-icon
       @click="removeCard"
       class="remove-card-preview"
       :icon="['fal', 'trash-alt']"
-      size="lg"
     />
   </section>
 </template>
@@ -106,7 +115,7 @@ export default {
   },
   components: {
     labelList,
-    memberAvatar
+    memberAvatar,
   },
 };
 </script>
