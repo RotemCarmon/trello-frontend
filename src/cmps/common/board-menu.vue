@@ -1,5 +1,5 @@
 <template>
-  <section class="board-menu-container flex column">
+  <section class="board-menu-container board-setting-menu flex column">
     <div class="menu-header text-center">
       <h3>Menu</h3>
       <button

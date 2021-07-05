@@ -12,12 +12,10 @@
         top: $header-hight;
         right: 0;
         left: unset;
+        background-color: $elem-bgc;
         &.open-menu {
             transform: translateX(0);
         }
-        background-color: $elem-bgc;
-        padding: 8px 2px 8px 10px;
-
         .menu-header,
         .board-menu-controllers {
             border-bottom: 1px solid #091e4221;
@@ -37,10 +35,13 @@
             margin-inline-end: 8px;
         }
         .activities-container{
-          overflow-y: auto;
-          // height: 100%;
-          
+            overflow-y: auto;
+            // height: 100%;
+            
         }
+    }
+    .board-setting-menu {
+        padding: 8px 2px 8px 10px;
     }
 }
 

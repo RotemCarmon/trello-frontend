@@ -22,6 +22,7 @@ export default {
             'url(' +
             require(`./assets/img/bg-imgs/original/${imgUrl}.jpg`) +
             ')',
+          backgroundSize: 'cover'
         };
       }
       return {};

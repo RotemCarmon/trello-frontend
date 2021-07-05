@@ -4,10 +4,10 @@
     <div class="card-preview">
       {{ card.title }}
     </div>
-    <div
-      ref="symbols"
-      class="card-preview-symbols flex wrap"
-    >
+    <div v-if="cardImgCover" class="cover-img">
+      <img :src="cardImgCover" alt="" />
+    </div>
+    <div class="card-preview-symbols flex wrap">
       <div
         v-if="dueDate"
         class="due-date due-date-badge symbol"
@@ -111,6 +111,11 @@ export default {
         return count + list?.todos?.length;
       }, 0);
       return `${doneTodos}/${todosLength}`;
+    },
+    cardImgCover() {
+      if (!this.card.cover) return '';
+      const imgUrl = this.card.cover.imgUrl;
+      return imgUrl;
     },
   },
   components: {

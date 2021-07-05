@@ -1,8 +1,23 @@
 <template>
   <section v-if="card" class="card-modal">
     <div @click.self="closeCard" class="modal-screen flex justify-center">
-      <div class="card-details-container" :class="{ 'cover-area': card.bgc }">
-        <div class="card-cover" :style="{ backgroundColor: card.bgc }"></div>
+      <div class="card-details-container" :class="{ 'cover-area': card.bgc || cardImgCover }">
+        <div
+          class="card-cover flex center-center"
+          :style="{ backgroundColor: card.bgc }"
+        >
+          <template v-if="cardImgCover">
+            <img :src="cardImgCover" alt="Cover" />
+            <span
+              
+              @click="removeCover"
+              class="details-btn remove-cover-btn"
+            >
+              <font-awesome-icon :icon="['fal', 'trash-alt']" />
+              Remove
+            </span>
+          </template>
+        </div>
         <!-- CLOSE BUTTON -->
         <button
           @click="closeCard"
@@ -82,11 +97,18 @@
                   <div class="img-container">
                     <img :src="attch.imgUrl" />
                   </div>
-                  <div class="attachment-remove">
+                  <div class="attachment-hover-btn attachment-remove">
                     <font-awesome-icon
-                      size="2x"
+                      title="Delete image"
                       :icon="['fal', 'trash-alt']"
                       @click="removeAttachment(attch)"
+                    />
+                  </div>
+                  <div class="attachment-hover-btn attachment-cover">
+                    <font-awesome-icon
+                      title="Set as cover"
+                      :icon="['fal', 'image-polaroid']"
+                      @click="setCover(attch)"
                     />
                   </div>
                 </div>
@@ -189,6 +211,11 @@ export default {
     comments() {
       return this.card?.comments;
     },
+    cardImgCover() {
+      if (!this.card.cover) return '';
+      const imgUrl = this.card.cover.imgUrl;
+      return imgUrl;
+    },
   },
   methods: {
     close() {
@@ -236,6 +263,14 @@ export default {
       }
       attachments.splice(idx, 1);
       this.updateCard({ activity: 'removed attachment' });
+    },
+    setCover(attch) {
+      this.card.cover = attch;
+      this.updateCard({ card: this.card, activity: 'added cover photo' });
+    },
+    removeCover() {
+      this.card.cover = null;
+      this.updateCard({ card: this.card, activity: 'removed cover photo' });
     },
     addComment(txt) {
       const comment = boardService.createComment({

@@ -7,7 +7,7 @@
     <slot name="header"></slot>
     <font-awesome-icon
       :icon="['fal', 'times']"
-      class="close-btn"
+      class="close-btn close-menu-btn"
       @click="close"
     />
     <slot name="main"></slot>
