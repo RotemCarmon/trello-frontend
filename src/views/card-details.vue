@@ -21,7 +21,7 @@
         <!-- CLOSE BUTTON -->
         <button
           @click="closeCard"
-          class="close-menu-btn hover-bg-btn flex center-center sqare-btn"
+          class="close-menu-btn hover-bg-btn flex center-center square-btn"
         >
           <font-awesome-icon :icon="['fal', 'times']" />
         </button>

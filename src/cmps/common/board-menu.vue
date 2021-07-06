@@ -4,7 +4,7 @@
       <h3>Menu</h3>
       <button
         @click="close"
-        class="close-menu-btn hover-bg-btn flex center-center sqare-btn"
+        class="close-menu-btn hover-bg-btn flex center-center square-btn"
       >
         <font-awesome-icon :icon="['fal', 'times']" />
       </button>

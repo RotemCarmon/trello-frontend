@@ -367,7 +367,9 @@ function _getEmptyBoard() {
     bgc: '#ffe5e5',
     imgUrl: '',
     bgType: 'bgc',
-    members: [],
+    members: [
+      { ...currMember }
+    ],
     labels: [],
     activities: [],
     lists: [

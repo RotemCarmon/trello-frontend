@@ -4,7 +4,7 @@
     <!-- <span @click="$emit('close')">">"</span> -->
     <button
       @click="$emit('close')"
-      class="back-menu-btn hover-bg-btn flex center-center sqare-btn"
+      class="back-menu-btn hover-bg-btn flex center-center square-btn"
     >
       <font-awesome-icon :icon="['fal', 'chevron-left']" />
     </button>
@@ -46,15 +46,25 @@ export default {
     return {
       // image: require('../../assets/img/bg-imgs/01.jpg'),
       colors: [
-        '#0079bf',
-        '#d29034',
-        '#519839',
-        '#b04632',
-        '#89609e',
-        '#4bbf6b',
-        '#00aecc',
-        '#838c91',
+        '#be74c5',
+        '#0fc69f',
+        '#4c4c82',
+        '#2d38aa',
+        '#50026a',
+        '#cd113b',
+        '#ff7600',
+        '#ffa900',
       ],
+      //  [
+      //   '#0079bf',
+      //   '#d29034',
+      //   '#519839',
+      //   '#b04632',
+      //   '#89609e',
+      //   '#4bbf6b',
+      //   '#00aecc',
+      //   '#838c91',
+      // ],
     };
   },
   methods: {

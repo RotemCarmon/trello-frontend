@@ -43,8 +43,11 @@
           :key="member._id"
         />
       </div>
-      <div class="add-members-btn btn-header" @click="getMemebers()">
-        Invite
+      <div class="add-members-btn btn-header square-btn" @click="getMemebers()">
+        <!-- Invite -->
+         <font-awesome-icon
+          :icon="['fal', 'user']"
+        />
       </div>
       <transition name="fade">
         <member-menu
@@ -58,7 +61,7 @@
     </div>
 
     <div class="board-header-right flex justify-end">
-      <div class="board-controllers btn-header" @click="openBoardMenu">
+      <div class="board-controllers btn-header square-btn" @click="openBoardMenu">
         <font-awesome-icon class="" :icon="['fal', 'sliders-h']" />
       </div>
     </div>

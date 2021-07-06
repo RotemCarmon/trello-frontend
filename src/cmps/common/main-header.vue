@@ -1,6 +1,6 @@
 <template>
   <header class="header-container header-grid-container">
-    <div class="btn-header sqare-btn" @click="goHome">
+    <div class="btn-header square-btn" @click="goHome">
       <font-awesome-icon icon="home" />
     </div>
     <div class="logo">Collo</div>

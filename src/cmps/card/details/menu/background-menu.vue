@@ -39,14 +39,14 @@ export default {
   data() {
     return {
       colors: [
-        '#E99497',
-        '#F3C583',
-        '#E8E46E',
-        '#B3E283',
-        '#F6B8B8',
-        '#AC66CC',
-        '#00EAD3',
-        '#1CC5DC',
+        '#e0ace5',
+        '#75d8c3',
+        '#b8b8eb',
+        '#9ca3ea',
+        '#ab98b1',
+        '#d388a0',
+        '#f4a45d',
+        '#f6d79b',
       ],
     };
   },
