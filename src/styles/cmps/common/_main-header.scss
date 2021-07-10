@@ -1,38 +1,39 @@
 .header-container {
-  background-color: #00000060;
-  align-items: center;
-  color: #fff;
+    background-color: #00000060;
+    align-items: center;
+    color: #fff;
 }
 .header-grid-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: $header-hight;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: $header-hight;
 }
 
 .logo {
-  font-size: 1.6em;
-  font-weight: 700;
-  font-family: cursive;
-  justify-self: center;
+    justify-self: center;
+    height: 100%;
+    padding: 3px;
+    img {
+        height: 100%;
+    }
 }
 
 .header-btns {
-  grid-column: 3;
-  display: flex;
-  flex-direction: row-reverse;
-  margin-inline-end: 4px;
+    grid-column: 3;
+    display: flex;
+    flex-direction: row-reverse;
+    margin-inline-end: 4px;
 }
 
 .boards-btn {
-  & :first-child{
-    margin-inline-end: 4px;
-  }
-  width: min-content;
-  padding: 5px 10px;
+    & :first-child {
+        margin-inline-end: 4px;
+    }
+    width: min-content;
+    padding: 5px 10px;
 }
 
 .login-btn {
-  width: min-content;
-  padding: 5px 10px;
-
+    width: min-content;
+    padding: 5px 10px;
 }
