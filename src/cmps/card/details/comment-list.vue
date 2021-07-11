@@ -3,7 +3,7 @@
     <h3 class="left-gap" v-if="!comments || !comments.length">No Comments</h3>
     <comment-preview
       v-for="comment in comments"
-      :key="comment._id"
+      :key="comment.id"
       :comment="comment"
       @remove="remove"
       @save="save"

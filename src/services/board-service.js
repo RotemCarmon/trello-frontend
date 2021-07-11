@@ -97,7 +97,7 @@ const gBoards = [
     ],
     members: [
       {
-        _id: 'u101',
+        id: 'u101',
         name: 'Rotem Carmon',
         email: 'tetch6@gmail.com',
         imgUrl: 'https://res.cloudinary.com/rotemc/image/upload/v1624316086/headshot_kppzkw.jpg'
@@ -105,7 +105,7 @@ const gBoards = [
     ],
     lists: [
       {
-        _id: 'l101',
+        id: 'l101',
         title: 'Todo list',
         inBoard: {
           boardId: 'b101',
@@ -113,7 +113,7 @@ const gBoards = [
         },
         cards: [
           {
-            _id: 'c101',
+            id: 'c101',
             createdAt: Date.now(),
             labels: [2, 3],
             checkLists: [
@@ -170,7 +170,7 @@ const gBoards = [
             members: []
           },
           {
-            _id: 'c102',
+            id: 'c102',
             createdAt: Date.now(),
             labels: [],
             checkLists: [],
@@ -185,7 +185,7 @@ const gBoards = [
         ]
       },
       {
-        _id: 'l102',
+        id: 'l102',
         title: 'In progress',
         inBoard: {
           boardId: 'b101',
@@ -193,7 +193,7 @@ const gBoards = [
         },
         cards: [
           {
-            _id: 'c103',
+            id: 'c103',
             createdAt: Date.now(),
             labels: [],
             checkLists: [],
@@ -207,7 +207,7 @@ const gBoards = [
 
           },
           {
-            _id: 'c104',
+            id: 'c104',
             createdAt: Date.now(),
             labels: [],
             checkLists: [],
@@ -224,17 +224,17 @@ const gBoards = [
     ],
     activities: [
       {
-        _id: 'a101',
+        id: 'a101',
         txt: 'Changed Color',
         createdAt: 1624792727055,
         byMember: {
-          _id: 'u101',
+          id: 'u101',
           name: 'Rotem Carmon',
           email: 'tetch6@gmail.com',
           imgUrl: 'https://res.cloudinary.com/rotemc/image/upload/v1624316086/headshot_kppzkw.jpg'
         },
         card: {
-          _id: 'c101',
+          id: 'c101',
           title: 'My card'
         }
       }
@@ -257,7 +257,7 @@ const gBoards = [
     members: [],
     lists: [
       {
-        _id: 'l103',
+        id: 'l103',
         title: 'aaa',
         inBoard: {
           boardId: 'b102',
@@ -265,7 +265,7 @@ const gBoards = [
         },
         cards: [
           {
-            _id: 'c108',
+            id: 'c108',
             createdAt: Date.now(),
             labels: [],
             inList: {
@@ -316,32 +316,27 @@ async function updateBoard(board) {
 
 function getEmptyList(listTitle = '') {
   return {
-    _id: 'l' + makeId(),
+    id: 'l' + makeId(),
     title: listTitle,
     cards: [
     ]
   }
 }
 
-// activityToAdd.card = {
-//   _id: card._id,
-//   title: card.title
-// }
-
 function createActivity({ txt, card, list, type = 'card' }) {
   return {
-    _id: 'a' + makeId(),
+    id: 'a' + makeId(),
     txt,
     createdAt: Date.now(),
     byMember: currMember,
-    card: (card && { _id: card._id, title: card.title }),
-    list: (list && { _id: list._id, title: list.title }),
+    card: (card && { id: card.id, title: card.title }),
+    list: (list && { id: list.id, title: list.title }),
     type
   }
 }
 function createComment({ txt, cardId }) {
   return {
-    _id: 'cmt' + makeId(),
+    id: 'cmt' + makeId(),
     txt,
     createdAt: Date.now(),
     byMember: currMember,
@@ -374,7 +369,7 @@ function _getEmptyBoard() {
     activities: [],
     lists: [
       {
-        _id: 'l101',
+        id: 'l101',
         title: 'New List',
         inBoard: {
           // boardId: id,
@@ -386,10 +381,6 @@ function _getEmptyBoard() {
   }
 }
 
-// function _getNextId() {
-//   const id = gBoards[gBoards.length - 1]._id
-//   return id.charAt(0) + (parseInt(id.slice(1)) + 1)
-// }
 async function getMemebers() {
   return await gMemebers
 }

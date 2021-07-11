@@ -46,7 +46,7 @@
       <member-avatar
         v-for="member in card.members"
         :member="member"
-        :key="member._id"
+        :key="member.id"
       />
     </div>
     <font-awesome-icon
@@ -69,10 +69,10 @@ export default {
   methods: {
     removeCard(ev) {
       ev.stopPropagation();
-      this.$emit('removeCard', this.card._id);
+      this.$emit('removeCard', this.card.id);
     },
     openCard() {
-      this.$emit('open', this.card._id);
+      this.$emit('open', this.card.id);
     },
   },
   computed: {

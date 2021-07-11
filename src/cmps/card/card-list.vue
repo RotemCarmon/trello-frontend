@@ -32,8 +32,8 @@
           <card-preview
             v-for="card in list.cards"
             :card="card"
-            :key="card._id"
-            :data-id="card._id"
+            :key="card.id"
+            :data-id="card.id"
             @open="openCard"
             @removeCard="removeCard"
           />
@@ -92,7 +92,7 @@ export default {
     removeCard(cardId) {
       const payload = {
         cardId,
-        listId: this.list._id,
+        listId: this.list.id,
       };
       this.$store.dispatch('removeCard', payload);
     },
@@ -100,19 +100,19 @@ export default {
       if (!this.newCardTitle) return;
       const payLoad = {
         title: this.newCardTitle,
-        listId: this.list._id,
+        listId: this.list.id,
       };
       this.$store.dispatch('addCard', payLoad);
       this.closeAddCard();
     },
     openCard(cardId) {
-      const param = `${this.list._id}-${cardId}`;
+      const param = `${this.list.id}-${cardId}`;
       const currPath = this.$router.currentRoute.fullPath;
       this.$router.push({ path: `${currPath}/card/${param}` });
     },
 
     removeList() {
-      this.$store.dispatch('removeList', this.list._id);
+      this.$store.dispatch('removeList', this.list.id);
     },
     openAddCard() {
       this.closeActionList();

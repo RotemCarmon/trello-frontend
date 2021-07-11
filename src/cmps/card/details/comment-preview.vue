@@ -18,7 +18,7 @@
           <p class="badge">{{ comment.txt }}</p>
         </div>
         <div class="comment-options">
-          <button class="secondary-btn" @click="$emit('remove', comment._id)">
+          <button class="secondary-btn" @click="$emit('remove', comment.id)">
             Delete
           </button>
           |

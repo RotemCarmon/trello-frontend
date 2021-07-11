@@ -12,7 +12,7 @@ export default {
       return JSON.parse(JSON.stringify(currBoard))
     },
     getCurrList({ currBoard }) {
-      return (listId) => currBoard.lists.find((list) => list._id === listId)
+      return (listId) => currBoard.lists.find((list) => list.id === listId)
     },
     getCurrCard({ currCard }) {
       return JSON.parse(JSON.stringify(currCard));
@@ -90,7 +90,7 @@ export default {
     },
     removeList(context, listId) {
       const currBoard = context.getters.getCurrBoard;
-      const listIdx = currBoard.lists.findIndex(list => list._id === listId);
+      const listIdx = currBoard.lists.findIndex(list => list.id === listId);
       if (listIdx === -1) throw new Error(`The list ${listId} was not found`);
       const [removedList] = currBoard.lists.splice(listIdx, 1)
       // Activity
@@ -102,8 +102,8 @@ export default {
     getCard(context, { listId, cardId }) {
       try {
         const currBoard = context.getters.getCurrBoard;
-        const currList = currBoard.lists.find(list => list._id === listId);
-        const currCard = currList.cards.find(card => card._id === cardId);
+        const currList = currBoard.lists.find(list => list.id === listId);
+        const currCard = currList.cards.find(card => card.id === cardId);
         context.commit('setCard', currCard)
       } catch (err) {
         console.log('Coudln\'t get card', err);

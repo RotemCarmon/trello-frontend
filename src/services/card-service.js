@@ -3,8 +3,8 @@ import { boardService } from './board-service'
 
 function removeCard({ board, listId, cardId }) {
   const copyBoard = JSON.parse(JSON.stringify(board));
-  const currList = copyBoard.lists.find(list => list._id === listId);
-  const cardIdx = currList.cards.findIndex(card => card._id === cardId);
+  const currList = copyBoard.lists.find(list => list.id === listId);
+  const cardIdx = currList.cards.findIndex(card => card.id === cardId);
   if (cardIdx === -1) {
     throw new Error(`The card ${cardId} was not found`);
   }
@@ -17,11 +17,11 @@ function removeCard({ board, listId, cardId }) {
 
 function addCard({ board, listId, title }) {
   const copyBoard = JSON.parse(JSON.stringify(board));
-  const currList = copyBoard.lists.find(list => list._id === listId);
+  const currList = copyBoard.lists.find(list => list.id === listId);
   const newCard = _getEmptyCard();
   newCard.title = title
   newCard.inList = {
-    listId: currList._id,
+    listId: currList.id,
     listTitle: currList.title
   }
   currList.cards.push(newCard)
@@ -33,10 +33,10 @@ function addCard({ board, listId, title }) {
 
 function updateCard({ board, listId, card }) {
   const copyBoard = JSON.parse(JSON.stringify(board));
-  const currList = copyBoard.lists.find(list => list._id === listId);
-  const cardIdx = currList.cards.findIndex(c => c._id === card._id);
+  const currList = copyBoard.lists.find(list => list.id === listId);
+  const cardIdx = currList.cards.findIndex(c => c.id === card.id);
   if (cardIdx === -1) {
-    throw new Error(`The card ${card._id} was not found`);
+    throw new Error(`The card ${card.id} was not found`);
   }
   currList.cards.splice(cardIdx, 1, card);
   return copyBoard
@@ -45,7 +45,7 @@ function updateCard({ board, listId, card }) {
 function getCardById({ board, cardId }) {
   let card = null
   board.lists.forEach(list => {
-    const currCard = list.cards.find(card => card._id === cardId)
+    const currCard = list.cards.find(card => card.id === cardId)
     if (currCard) card = currCard
   })
   return card
@@ -61,7 +61,7 @@ export const cardService = {
 
 function _getEmptyCard() {
   return {
-    _id: 'c' + makeId(),
+    id: 'c' + makeId(),
     createdAt: Date.now(),
     description: '',
     labels: []

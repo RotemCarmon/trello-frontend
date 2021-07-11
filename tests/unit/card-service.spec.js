@@ -15,7 +15,7 @@ describe('Get Card By Id', () => {
 
     const cardId = 'c104'
     const card = await cardService.getCardById({ board, cardId })
-    expect(card._id).toEqual(cardId)
+    expect(card.id).toEqual(cardId)
   })
 
   test('returns null if id does not exist', async () => {

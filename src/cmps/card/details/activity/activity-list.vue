@@ -3,7 +3,7 @@
     <h3 class="left-gap" v-if="!activities || !activities.length">No Activities</h3>
     <activity-preview
       v-for="activity in activities"
-      :key="activity._id"
+      :key="activity.id"
       :activity="activity"
     />
   </section>

@@ -10,7 +10,7 @@ export function makeId(size = 5) {
 
 export function createAttachment(imgUrl, name = '') {
   return {
-    _id: makeId(8),
+    id: makeId(8),
     imgUrl,
     name,
     createdAt: Date.now()

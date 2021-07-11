@@ -72,7 +72,7 @@
               <div class="member-list details-section flex">
                 <member-avatar
                   v-for="member in card.members"
-                  :key="member._id"
+                  :key="member.id"
                   :member="member"
                 />
               </div>
@@ -91,7 +91,7 @@
               <div class="attachment-list flex wrap">
                 <div
                   v-for="attch in this.card.attachments"
-                  :key="attch._id"
+                  :key="attch.id"
                   class="attachment-preview"
                 >
                   <div class="img-container">
@@ -205,7 +205,7 @@ export default {
     activities() {
       const activits = this.$store.getters.getActivities;
       return activits.filter(
-        (activity) => activity?.card?._id === this.card._id
+        (activity) => activity?.card?.id === this.card.id
       );
     },
     comments() {
@@ -255,7 +255,7 @@ export default {
     removeAttachment(attachment) {
       const { attachments } = this.card;
       const idx = attachments.findIndex(
-        (attch) => attch._id === attachment._id
+        (attch) => attch.id === attachment.id
       );
       if (idx === -1) {
         console.log('Attachment dont exist!');
@@ -275,7 +275,7 @@ export default {
     addComment(txt) {
       const comment = boardService.createComment({
         txt,
-        cardId: this.card._id,
+        cardId: this.card.id,
       });
       if (!this.card.comments) this.card.comments = [];
       this.card.comments.unshift(comment);
@@ -283,7 +283,7 @@ export default {
     },
     removeComment(commentId) {
       const commentIdx = this.card.comments.findIndex(
-        (comment) => comment._id === commentId
+        (comment) => comment.id === commentId
       );
       if (commentIdx === -1) {
         console.log("Can't remove Comment");
@@ -294,7 +294,7 @@ export default {
     },
     editComment(comment) {
       const commentIdx = this.card.comments.findIndex(
-        (c) => c._id === comment._id
+        (c) => c.id === comment.id
       );
       if (commentIdx === -1) {
         console.log("Can't edit Comment");

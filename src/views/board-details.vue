@@ -15,8 +15,8 @@
         <card-list
           v-for="list in board.lists"
           :list="list"
-          :data-id="list._id"
-          :key="list._id"
+          :data-id="list.id"
+          :key="list.id"
           @update="updateBoard"
           @moveCard="moveCard"
         />

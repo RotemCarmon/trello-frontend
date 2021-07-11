@@ -40,7 +40,7 @@
         <member-avatar
           v-for="member in board.members"
           :member="member"
-          :key="member._id"
+          :key="member.id"
         />
       </div>
       <div class="add-members-btn btn-header square-btn" @click="getMemebers()">
